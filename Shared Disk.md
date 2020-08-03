@@ -62,3 +62,10 @@ PS />Update-AzDisk -ResourceGroupName *myResourceGroup* -DiskName *mySharedDisk*
 
     *The maxShares value can only be updated if the disk is detached from all nodes. The default value is 1.
     
+### Attach disk to VM
+
+PS /> $dataDisk = Get-AzDisk -ResourceGroupName *myResourceGroup* -DiskName *mySharedDisk*    
+PS /> $VirtualMachine = Get-AzVM -ResourceGroupName *myResourceGroup* -Name *MyVM*    
+PS /> $vm = Add-AzVMDataDisk -VM $VirtualMachine -Name *mySharedDisk* -CreateOption Attach -ManagedDiskId $dataDisk.Id -Lun *0*    
+PS /> update-AzVm -VM $vm -ResourceGroupName *myResourceGroup*
+
