@@ -11,7 +11,6 @@ Shared disks can be created from Azure CLI, PowerShell, and templates. The **max
 ## CLI
 ### Create a shared disk
 #### Premium SSD Example
-
 az disk create -g *myResourceGroup* -n *mySharedDisk* --size-gb *256* -l westcentralus --sku PremiumSSD_LRS --max-shares *2* --zone *1*    
     Note that this creates a 256GiB disk with 2 shares. The italicized parameters need to be changed to match your environment    
     Other settings to consider might include diskIopsReadOnly, diskIopsReadWrite, diskMbpsReadOnly, and diskMbpsReadWrite.
@@ -19,21 +18,17 @@ az disk create -g *myResourceGroup* -n *mySharedDisk* --size-gb *256* -l westcen
 *Currently Premium SSD shared disks can only be created in the West Central US region. My Azure subscription doesn't allow me to create VM's in that region, so I have done my testing with Ultra Disks. The main difference in the syntax is the sku (disk type). [Ultra Disks](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/disks-enable-ultra-ssd#ga-scope-and-limitations) can have cutsom disk sizes. The disk size determines how many shares can be allocated. Max for Premium SSDs is 10. Max for Ultra Disks is 5.*
 
 #### Ultra Disk Example
-
 az disk create -g *myResourceGroup* -n *mySharedDisk* --size-gb *256* -l *westus2* --sku UltraSSD_LRS --max-shares *2* --zone *1*
 
 ### View disk properties (useful command)
-
 az disk show -g *myResourceGroup* -n *mySharedDisk*
 
 ### Convert existing disk to shared disk or increase number of shares
-
 az disk update -g *myResourceGroup* -n *mySharedDisk* --set maxShares=*2*
 
     *The maxShares value can only be updated if the disk is detached from all nodes. The default value is 1.
     
 ### Attach disk to VM
-
 az vm disk attach -g *myResourceGroup* --vm-name *myVMName* --name *mySharedDisk*
 
     *Note that Option '--disk' has been deprecated and will be removed in a future release. Using '--name' instead.
@@ -41,21 +36,17 @@ az vm disk attach -g *myResourceGroup* --vm-name *myVMName* --name *mySharedDisk
 ## PowerShell
 ### Create a shared disk
 #### Premium SSD Example
-
 PS />$dataDiskConfig = New-AzDiskConfig -Location WestCentralUS -DiskSizeGB *256* -AccountType PremiumSSD_LRS -CreateOption *Empty* -MaxSharesCount *2* -Zone *1*    
 PS />New-AzDisk -ResourceGroupName *myResourceGroup* -DiskName *mySharedDisk* -Disk $dataDiskConfig
 
 #### Ultra Disk Example
-
 PS />$datadiskconfig = New-AzDiskConfig -Location *westus2* -DiskSizeGB *256* -AccountType UltraSSD_LRS -CreateOption *Empty* -MaxSharesCount *2* -Zone *1*    
 PS />New-AzDisk -ResourceGroupName *myResourceGroup* -DiskName *mySharedDisk* -Disk $datadiskconfig
 
 ### View disk properties
-
 PS />Get-AzDisk -ResourceGroupName *myResourceGroup* -DiskName *mySharedDisk*
 
 ### Convert existing disk to shared disk or increase number of shares
-
 PS />$disk = Get-AzDisk -ResourceGroupName *myResourceGroup* -DiskName *mySharedDisk*    
 PS />$disk.MaxShares = *2*    
 PS />Update-AzDisk -ResourceGroupName *myResourceGroup* -DiskName *mySharedDisk* -Disk $disk    
@@ -63,7 +54,6 @@ PS />Update-AzDisk -ResourceGroupName *myResourceGroup* -DiskName *mySharedDisk*
     *The maxShares value can only be updated if the disk is detached from all nodes. The default value is 1.
     
 ### Attach disk to VM
-
 PS /> $dataDisk = Get-AzDisk -ResourceGroupName *myResourceGroup* -DiskName *mySharedDisk*    
 PS /> $VirtualMachine = Get-AzVM -ResourceGroupName *myResourceGroup* -Name *MyVM*    
 PS /> $vm = Add-AzVMDataDisk -VM $VirtualMachine -Name *mySharedDisk* -CreateOption Attach -ManagedDiskId $dataDisk.Id -Lun *0*    
