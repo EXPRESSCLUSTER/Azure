@@ -69,3 +69,17 @@ PS /> $VirtualMachine = Get-AzVM -ResourceGroupName *myResourceGroup* -Name *MyV
 PS /> $vm = Add-AzVMDataDisk -VM $VirtualMachine -Name *mySharedDisk* -CreateOption Attach -ManagedDiskId $dataDisk.Id -Lun *0*    
 PS /> update-AzVm -VM $vm -ResourceGroupName *myResourceGroup*
 
+## Azure Portal
+A managed disk can be created from the Azure Portal, but there doesn’t appear to be a way to make it a shared disk during creation. If a disk is created from the Azure Portal, it can be detached from the VM (stop the VM first), ‘converted’ into a shared disk by modifying the ‘maxShares’ parameter from the CLI or PowerShell, and then added/attached to the VM again from the Portal.
+
+### Detach a disk using CLI (FYI)
+az vm disk detach -g *myResourceGroup* --vm-name *myVMName* --name *mySharedDisk*
+
+### Detach a disk using PowerShell (FYI)
+PS />$VirtualMachine = Get-AzVM -ResourceGroupName *myResourceGroup* -Name *myVMName*    
+PS />Remove-AzVMDataDisk -VM $VirtualMachine -Name *mySharedDisk*    
+PS />Update-AzVM -ResourceGroupName *myResourceGroup* -VM $VirtualMachine
+
+
+
+
