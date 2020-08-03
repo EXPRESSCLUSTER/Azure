@@ -12,7 +12,8 @@ Shared disks can be created from Azure CLI, PowerShell, and templates. The **max
 ### Create a shared disk
 #### Premium SSD Example
 az disk create -g *myResourceGroup* -n *mySharedDisk* --size-gb *256* -l westcentralus --sku PremiumSSD_LRS --max-shares *2* --zone *1*    
-    Note that this creates a 256GiB disk with 2 shares. The italicized parameters need to be changed to match your environment    
+
+   *Note that this creates a 256GiB disk with 2 shares. The italicized parameters need to be changed to match your environment    
     Other settings to consider might include diskIopsReadOnly, diskIopsReadWrite, diskMbpsReadOnly, and diskMbpsReadWrite.
 
 *Currently Premium SSD shared disks can only be created in the West Central US region. My Azure subscription doesn't allow me to create VM's in that region, so I have done my testing with Ultra Disks. The main difference in the syntax is the sku (disk type). [Ultra Disks](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/disks-enable-ultra-ssd#ga-scope-and-limitations) can have cutsom disk sizes. The disk size determines how many shares can be allocated. Max for Premium SSDs is 10. Max for Ultra Disks is 5.*
