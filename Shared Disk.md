@@ -49,3 +49,15 @@ PS />New-AzDisk -ResourceGroupName *myResourceGroup* -DiskName *mySharedDisk* -D
 PS />$datadiskconfig = New-AzDiskConfig -Location *westus2* -DiskSizeGB *256* -AccountType UltraSSD_LRS -CreateOption *Empty* -MaxSharesCount *2* -Zone *1*    
 PS />New-AzDisk -ResourceGroupName *myResourceGroup* -DiskName *mySharedDisk* -Disk $datadiskconfig
 
+### View disk properties
+
+PS />Get-AzDisk -ResourceGroupName *myResourceGroup* -DiskName *mySharedDisk*
+
+### Convert existing disk to shared disk or increase number of shares
+
+PS />$disk = Get-AzDisk -ResourceGroupName *myResourceGroup* -DiskName *mySharedDisk*    
+PS />$disk.MaxShares = *2*    
+PS />Update-AzDisk -ResourceGroupName *myResourceGroup* -DiskName *mySharedDisk* -Disk $disk    
+
+    *The maxShares value can only be updated if the disk is detached from all nodes. The default value is 1.
+    
