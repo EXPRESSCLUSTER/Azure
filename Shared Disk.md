@@ -5,4 +5,11 @@ Microsoft recently (July 6, 2020) announced the general availability of [Azure s
     **Premium SSD shared disks are currently only available in West Central US region.    
     ***All VMs sharing a disk must be deployed in the same proximity placement group.
 
+Shared disks can be created from CLI & PowerShell. The **maxshares** value of a managed disk can be modified to create a shared disk. Some examples of how to create a shared disk using CLI and PowerShell are listed below.
 
+## CLI
+### Create a shared disk
+#### Premium SSD Example
+
+az disk create -g *myResourceGroup* -n *mySharedDisk* --size-gb *256* -l westcentralus --sku PremiumSSD_LRS --max-shares *2* --zone *1*    
+    Note that this creates a 256GiB disk with 2 shares. The italicized parameters need to be changed to match your environment
