@@ -41,11 +41,11 @@ az vm disk attach -g *myResourceGroup* --vm-name *myVMName* --name *mySharedDisk
 ### Create a shared disk
 #### Premium SSD Example
 
-PS />$dataDiskConfig = New-AzDiskConfig -Location WestCentralUS -DiskSizeGB *256* -AccountType PremiumSSD_LRS -CreateOption *Empty* -MaxSharesCount *2* -Zone *1*
+PS />$dataDiskConfig = New-AzDiskConfig -Location WestCentralUS -DiskSizeGB *256* -AccountType PremiumSSD_LRS -CreateOption *Empty* -MaxSharesCount *2* -Zone *1*    
 PS />New-AzDisk -ResourceGroupName *myResourceGroup* -DiskName *mySharedDisk* -Disk $dataDiskConfig
 
 #### Ultra Disk Example
 
-PS />$datadiskconfig = New-AzDiskConfig -Location *westus2* -DiskSizeGB *256* -AccountType UltraSSD_LRS -CreateOption *Empty* -MaxSharesCount *2* -Zone *1*
+PS />$datadiskconfig = New-AzDiskConfig -Location *westus2* -DiskSizeGB *256* -AccountType UltraSSD_LRS -CreateOption *Empty* -MaxSharesCount *2* -Zone *1*    
 PS />New-AzDisk -ResourceGroupName *myResourceGroup* -DiskName *mySharedDisk* -Disk $datadiskconfig
 
