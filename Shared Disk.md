@@ -3,7 +3,7 @@ Microsoft recently (July 6, 2020) announced the general availability of [Azure s
 
     *If using an Ultra Disk, Ultra Disk compatibility must be enabled on the VM.    
     **Premium SSD shared disks are currently only available in West Central US region.    
-      The minimum Premium SSD shared disk size is 256GiB.    
+      The minimum Premium SSD shared disk size is 256 GiB.    
     ***All VMs sharing a disk must be deployed in the same proximity placement group.
 
 <p align="center">
