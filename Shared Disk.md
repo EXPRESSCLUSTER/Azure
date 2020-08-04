@@ -12,7 +12,7 @@ Microsoft recently (July 6, 2020) announced the general availability of [Azure s
 
 Shared disks can be created from Azure CLI, PowerShell, and templates. The **maxshares** value of a managed disk can be modified to create a shared disk. Some examples of how to create a shared disk using CLI and PowerShell are listed below.
 
-## CLI
+## CLI examples
 ### Create a shared disk
 #### Premium SSD Example
 az disk create -g *myResourceGroup* -n *mySharedDisk* --size-gb *256* -l westcentralus --sku PremiumSSD_LRS --max-shares *2* --zone *1*    
@@ -38,7 +38,7 @@ az vm disk attach -g *myResourceGroup* --vm-name *myVMName* --name *mySharedDisk
 
     *Note that Option '--disk' has been deprecated and will be removed in a future release. Using '--name' instead.
     
-## PowerShell
+## PowerShell examples
 ### Create a shared disk
 #### Premium SSD Example
 PS />$dataDiskConfig = New-AzDiskConfig -Location WestCentralUS -DiskSizeGB *256* -AccountType PremiumSSD_LRS -CreateOption *Empty* -MaxSharesCount *2* -Zone *1*    
