@@ -6,7 +6,7 @@ Microsoft recently (July 6, 2020) announced the general availability of [Azure s
       The minimum Premium SSD shared disk size is 256GiB.    
     ***All VMs sharing a disk must be deployed in the same proximity placement group.
 
-![Shared Disk Image]()
+![Shared Disk Image](Azure%20Shared%20Disk.png)
 
 Shared disks can be created from Azure CLI, PowerShell, and templates. The **maxshares** value of a managed disk can be modified to create a shared disk. Some examples of how to create a shared disk using CLI and PowerShell are listed below.
 
