@@ -75,6 +75,5 @@ PS />$VirtualMachine = Get-AzVM -ResourceGroupName *myResourceGroup* -Name *myVM
 PS />Remove-AzVMDataDisk -VM $VirtualMachine -Name *mySharedDisk*    
 PS />Update-AzVM -ResourceGroupName *myResourceGroup* -VM $VirtualMachine
 
-
-
-
+## Shared Disk Persistent Reservation
+EXPRESSCLUSTER currently does not use SCSI PR (SCSI-3 Persistent Reservation) for exclusive control of a shared-disk. Because of this, data consistency cannot be maintained in certain configurations and situations. A solution for this is to use low level command line utilities which can make requests to acquire and control information about persistent reservations and reservation keys. These commands can interact with a shared disk, controlling access more efficiently.
