@@ -63,30 +63,29 @@ This setting ensures that disks are brought online after migration, and that bot
        Use the tool clpcfset.exe located in the EXPRESSCLUSTER\bin folder to simplify the process. Change the current directory to C:\Program Files\EXPRESSCLUSTER\etc. 
 
        Example (assuming one lan and one mirror disk):
-
-clpcfset add device server1 lan 0 192.168.0.10
-clpcfset add device server1 mdc 0 192.168.0.10
-clpcfset add device server2 lan 0 192.168.0.20
-clpcfset add device server2 mdc 0 192.168.0.20
-
+```
+       clpcfset add device server1 lan 0 192.168.0.10
+       clpcfset add device server1 mdc 0 192.168.0.10
+       clpcfset add device server2 lan 0 192.168.0.20
+       clpcfset add device server2 mdc 0 192.168.0.20
+```
 *modify with your server names and IP addresses
 
 5.	REPEAT steps 1 – 4 on the other server before continuing
 
 6.	Start the ECX services on BOTH servers [startECXsrvc.bat]
 
-*When services start, the cluster should also start automatically. Also note that the EXPRESSCLUSTER API service may start and then stop after starting since it is "not in use"
+       *When services start, the cluster should also start automatically. Also note that the EXPRESSCLUSTER API service may start and then stop after starting since it is "not in use"
 
 7.	Change altered services startup types from "Manual" back to "Automatic" in Services Manager on BOTH servers. [setsrvcauto.bat]
 
-ECX services:  Run "clpsvcctrl.bat --enable -a" from a command prompt.
+       ECX services:  Run "*clpsvcctrl.bat --enable -a*" from a command prompt.
 
-*The batch file is located in the ECX bin folder and is in the Windows path.
+       *The batch file is located in the ECX bin folder and is in the Windows path.
 
-SQL services startup type can be left as manual.
+       SQL services startup type can be left as manual.
 
-
-Verification steps - Run on the primary Azure VM server
+## Verification steps - Run on the primary Azure VM server
 
 1.	Start the Cluster WebUI to view the cluster status. Change to the Status tab.
 
