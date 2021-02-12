@@ -5,9 +5,9 @@
 ## Before Migration - perform on both servers
 
 1.	Run System File Checker from the command prompt to find any integrity issues:
-
+```
        sfc.exe /scannow
-
+```
 2.	Install Windows Updates and restart servers
 
 Settings->Update & Security
