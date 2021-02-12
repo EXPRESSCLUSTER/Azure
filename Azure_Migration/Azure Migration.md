@@ -12,13 +12,13 @@
 
        *Settings->Update & Security*
 
-3.	Enable RDP (optional) [Enable RDP.bat]
+3.	Enable RDP (optional) \[Enable RDP.bat\]
 
        *Settings->System->Remote Desktop->Enable Remote Desktop*
     
        Enable RDP if remote access to the server is required. If RDP is enabled, it is also recommended to change the power settings to keep the PC awake and discoverable to facilitate connections.
 
-4.	Set the SAN policy for newly discovered disks [Set SAN Policy.bat]    
+4.	Set the SAN policy for newly discovered disks \[Set SAN Policy.bat\]
 ```
        C:\diskpart
        DISKPART> san policy=onlineall
@@ -26,9 +26,9 @@
 ```
 This setting ensures that disks are brought online after migration, and that both disks can be read and written to. If this step is omitted, the mirror disks on the Azure VM will need to be set Online before starting the EXPRESSCLUSTER cluster services.
 
-5.	Change service startup types from "Automatic" to "Manual" [setsrvcman.bat]
+5.	Change service startup types from "Automatic" to "Manual" \[setsrvcman.bat\]
 
-       ECX services:  Run "*clpsvcctrl.bat --disable -a*" from a command prompt.
+       ECX services:  Run "***clpsvcctrl.bat --disable -a***" from a command prompt.
 
        *clpsvcctrl.bat is located in the ECX bin folder and is in the Windows path.
 
@@ -38,7 +38,7 @@ This setting ensures that disks are brought online after migration, and that bot
 
        Launch the EXPRESSCLUSTER Cluster WebUI. Change to Config Mode and remove the resource.
 
-7.	Shut down the On-premise VMs [ECX Shutdown.bat]
+7.	Shut down the On-premise VMs \[ECX Shutdown.bat\]
 
        Shut down from the EXPRESSCLUSTER WebUI or execute the command *clpstdn.exe*.
 
@@ -49,7 +49,7 @@ This setting ensures that disks are brought online after migration, and that bot
 1.	Turn on Azure VMs if not automatically started and connect to both VMs.
 
 2.	Enable Network Discovery (optional)
-       Log in and when prompted, click Yes to allow your PC to be discoverable by other PCs. If you miss this opening dialog, turn network discovery on in Network and Sharing Center. [Enable Discovery.bat]
+       Log in and when prompted, click Yes to allow your PC to be discoverable by other PCs. If you miss this opening dialog, turn network discovery on in Network and Sharing Center. \[Enable Discovery.bat\]
 
        *Settings->Network & Internet->Network and Sharing Center->Change advanced sharing settings*
 
@@ -73,11 +73,11 @@ This setting ensures that disks are brought online after migration, and that bot
 
 5.	REPEAT steps 1 – 4 on the other server before continuing
 
-6.	Start the ECX services on BOTH servers [startECXsrvc.bat]
+6.	Start the ECX services on BOTH servers \[startECXsrvc.bat\]
 
        *When services start, the cluster should also start automatically. Also note that the EXPRESSCLUSTER API service may start and then stop after starting since it is "not in use"
 
-7.	Change altered services startup types from "Manual" back to "Automatic" in Services Manager on BOTH servers. [setsrvcauto.bat]
+7.	Change altered services startup types from "Manual" back to "Automatic" in Services Manager on BOTH servers. \[setsrvcauto.bat\]
 
        ECX services:  Run "*clpsvcctrl.bat --enable -a*" from a command prompt.
 
