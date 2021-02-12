@@ -9,12 +9,12 @@
        sfc.exe /scannow
 ```
 2.	Install Windows Updates and restart servers
-```
-       Settings->Update & Security
-```
+
+       *Settings->Update & Security*
+
 3.	Enable RDP (optional) [Enable RDP.bat]
 
-Settings->System->Remote Desktop->Enable Remote Desktop
+       *Settings->System->Remote Desktop->Enable Remote Desktop*
 
 Enable RDP if remote access to the server is required. If RDP is enabled, it is also recommended to change the power settings to keep the PC awake and discoverable to facilitate connections.
 
