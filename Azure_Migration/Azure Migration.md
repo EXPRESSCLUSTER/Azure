@@ -57,7 +57,7 @@ This setting ensures that disks are brought online after migration, and that bot
 
        *Computer Management->Disk Management*
 
-4.	Change IP addresses in CLP.CONF for both servers and mdcs on each server (if new IP addresses were assigned)
+4.	Change IP addresses in CLP.CONF for both servers and mdcs on each server (if new IP addresses were assigned)    
        *Create backup of CLP.CONF first \[cfset.bat \<server name\> \<lan\&mdc pos.\> \<IP address\>\]
 
        Use the tool clpcfset.exe located in the EXPRESSCLUSTER\bin folder to simplify the process. Change the current directory to C:\Program Files\EXPRESSCLUSTER\etc. 
