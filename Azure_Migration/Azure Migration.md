@@ -79,7 +79,7 @@ This setting ensures that disks are brought online after migration, and that bot
 
 7.	Change altered services startup types from "Manual" back to "Automatic" in Services Manager on BOTH servers. \[setsrvcauto.bat\]
 
-       ECX services:  Run "*clpsvcctrl.bat --enable -a*" from a command prompt.
+       ECX services:  Run "***clpsvcctrl.bat --enable -a***" from a command prompt.
 
        *The batch file is located in the ECX bin folder and is in the Windows path.
 
