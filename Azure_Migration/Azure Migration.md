@@ -42,8 +42,11 @@ This setting ensures that disks are brought online after migration, and that bot
 
        Shut down from the EXPRESSCLUSTER WebUI or execute the command *clpstdn.exe*.
 
+------
+
 ## Perform Migration
 
+------
 ## Post Migration - Perform the following steps on both Azure VM servers
 
 1.	Turn on Azure VMs if not automatically started and connect to both VMs.
