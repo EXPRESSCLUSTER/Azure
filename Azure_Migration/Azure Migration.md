@@ -5,13 +5,13 @@
 ## Before Migration - perform on both servers
 
 1.	Run System File Checker from the command prompt to find any integrity issues:
-
-       *sfc.exe /scannow*
-
+```
+       sfc.exe /scannow
+```
 2.	Install Windows Updates and restart servers
-
-Settings->Update & Security
-
+```
+       Settings->Update & Security
+```
 3.	Enable RDP (optional) [Enable RDP.bat]
 
 Settings->System->Remote Desktop->Enable Remote Desktop
