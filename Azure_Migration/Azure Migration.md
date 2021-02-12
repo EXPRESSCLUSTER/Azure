@@ -16,7 +16,7 @@
 
        *Settings->System->Remote Desktop->Enable Remote Desktop*
     
-Enable RDP if remote access to the server is required. If RDP is enabled, it is also recommended to change the power settings to keep the PC awake and discoverable to facilitate connections.
+       Enable RDP if remote access to the server is required. If RDP is enabled, it is also recommended to change the power settings to keep the PC awake and discoverable to facilitate connections.
 
 4.	Set the SAN policy for newly discovered disks [Set SAN Policy.bat]
 
