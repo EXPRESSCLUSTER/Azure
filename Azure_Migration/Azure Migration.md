@@ -23,16 +23,16 @@
        C:\diskpart
        DISKPART> san policy=onlineall
        DISKPART> exit
-```
+```    
 This setting ensures that disks are brought online after migration, and that both disks can be read and written to. If this step is omitted, the mirror disks on the Azure VM will need to be set Online before starting the EXPRESSCLUSTER cluster services.
 
 5.	Change service startup types from "Automatic" to "Manual" [setsrvcman.bat]
 
-ECX services:  Run "clpsvcctrl.bat --disable -a" from a command prompt.
+       ECX services:  Run "clpsvcctrl.bat --disable -a" from a command prompt.
 
-*clpsvcctrl.bat is located in the ECX bin folder and is in the Windows path.
+       *clpsvcctrl.bat is located in the ECX bin folder and is in the Windows path.
 
-SQL Server services – should be already set to manual
+       SQL Server services – should be already set to manual
 
 6.	Remove FIP or VIP resources using Cluster WebUI
 
