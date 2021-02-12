@@ -18,18 +18,17 @@
     
        Enable RDP if remote access to the server is required. If RDP is enabled, it is also recommended to change the power settings to keep the PC awake and discoverable to facilitate connections.
 
-4.	Set the SAN policy for newly discovered disks [Set SAN Policy.bat]
+4.	Set the SAN policy for newly discovered disks [Set SAN Policy.bat]    
 ```
        C:\diskpart
        DISKPART> san policy=onlineall
        DISKPART> exit
 ```
-    
-   This setting ensures that disks are brought online after migration, and that both disks can be read and written to. If this step is omitted, the mirror disks on the Azure VM will need to be set Online before starting the EXPRESSCLUSTER cluster services.
+This setting ensures that disks are brought online after migration, and that both disks can be read and written to. If this step is omitted, the mirror disks on the Azure VM will need to be set Online before starting the EXPRESSCLUSTER cluster services.
 
 5.	Change service startup types from "Automatic" to "Manual" [setsrvcman.bat]
 
-       ECX services:  Run "clpsvcctrl.bat --disable -a" from a command prompt.
+       ECX services:  Run "*clpsvcctrl.bat --disable -a*" from a command prompt.
 
        *clpsvcctrl.bat is located in the ECX bin folder and is in the Windows path.
 
@@ -37,32 +36,33 @@
 
 6.	Remove FIP or VIP resources using Cluster WebUI
 
-Launch the EXPRESSCLUSTER Cluster WebUI. Change to Config Mode and remove the resource.
+       Launch the EXPRESSCLUSTER Cluster WebUI. Change to Config Mode and remove the resource.
 
 7.	Shut down the On-premise VMs [ECX Shutdown.bat]
 
-Shut down from the EXPRESSCLUSTER WebUI or execute the command clpstdn.exe.
-Perform Migration
+       Shut down from the EXPRESSCLUSTER WebUI or execute the command *clpstdn.exe*.
 
-Post Migration - Perform the following steps on both Azure VM servers
+## Perform Migration
+
+## Post Migration - Perform the following steps on both Azure VM servers
 
 1.	Turn on Azure VMs if not automatically started and connect to both VMs.
 
 2.	Enable Network Discovery (optional)
-Log in and when prompted, click Yes to allow your PC to be discoverable by other PCs. If you miss this opening dialog, turn network discovery on in Network and Sharing Center. [Enable Discovery.bat]
+       Log in and when prompted, click Yes to allow your PC to be discoverable by other PCs. If you miss this opening dialog, turn network discovery on in Network and Sharing Center. [Enable Discovery.bat]
 
-Settings->Network & Internet->Network and Sharing Center->Change advanced sharing settings
+       *Settings->Network & Internet->Network and Sharing Center->Change advanced sharing settings*
 
 3.	Confirm that the mirror disk is online in Disk Management.
 
-Computer Management->Disk Management
+       *Computer Management->Disk Management*
 
 4.	Change IP addresses in CLP.CONF for both servers and mdcs on each server (if new IP addresses were assigned)
-*Create backup of CLP.CONF first [cfset.bat <server name> <lan&mdc pos.> <IP address>]
+       *Create backup of CLP.CONF first [cfset.bat <server name> <lan&mdc pos.> <IP address>]
 
-Use the tool clpcfset.exe located in the EXPRESSCLUSTER\bin folder to simplify the process. Change the current directory to C:\Program Files\EXPRESSCLUSTER\etc. 
+       Use the tool clpcfset.exe located in the EXPRESSCLUSTER\bin folder to simplify the process. Change the current directory to C:\Program Files\EXPRESSCLUSTER\etc. 
 
-Example (assuming one lan and one mirror disk):
+       Example (assuming one lan and one mirror disk):
 
 clpcfset add device server1 lan 0 192.168.0.10
 clpcfset add device server1 mdc 0 192.168.0.10
