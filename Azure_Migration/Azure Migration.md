@@ -1,6 +1,6 @@
 # On-Premise EXPRESSCLUSTER Windows VM Migration to Azure
 
- <span style="font-size:80%">*Please note that the location to find the Windows settings for a specific task are listed below the step name. If there is a script to perform that task, it is listed in brackets next to the step. Manual instructions for most tasks are included below the step. All included scripts or batch files should be run with elevated privileges.</span>
+When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud requires several pre-migration steps and post-migrations steps in order to make a smoother transition. This guide provides those important steps. Please note that the location to find the Windows settings for a specific task are listed below the step name. If there is a script to perform that task, it is listed in brackets next to the step. Manual instructions for most tasks are included below the step. All included scripts should be run with elevated privileges.
 
 ## Before Migration - perform on both servers
 
