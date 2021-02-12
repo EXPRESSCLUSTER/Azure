@@ -20,11 +20,11 @@
 
 4.	Set the SAN policy for newly discovered disks [Set SAN Policy.bat]
 ```
-C:\diskpart
-DISKPART> san policy=onlineall
-DISKPART> exit
+       C:\diskpart
+       DISKPART> san policy=onlineall
+       DISKPART> exit
 ```
-       This setting ensures that disks are brought online after migration, and that both disks can be read and written to. If this step is omitted, the mirror disks on the Azure VM will need to be set Online before starting the EXPRESSCLUSTER cluster services.
+    This setting ensures that disks are brought online after migration, and that both disks can be read and written to. If this step is omitted, the mirror disks on the Azure VM will need to be set Online before starting the EXPRESSCLUSTER cluster services.
 
 5.	Change service startup types from "Automatic" to "Manual" [setsrvcman.bat]
 
