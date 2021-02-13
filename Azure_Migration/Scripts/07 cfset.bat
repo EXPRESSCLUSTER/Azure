@@ -13,8 +13,6 @@ rem backup config file (clp.conf)
 for /f "delims=" %%a in ('wmic OS Get localdatetime ^| find "."') do set DateTime=%%a
 copy clp.conf clp%DateTime:~0,14%.conf
 
-:continue
-
 clpcfset add device "%~1" lan "%~2" "%~3"
 clpcfset add device "%~1" mdc "%~2" "%~3"
 
