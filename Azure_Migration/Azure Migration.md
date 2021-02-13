@@ -91,7 +91,7 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
 
 ## Verification steps - Run on the primary Azure VM server
 
-1.	Start the **Cluster WebUI** to view the cluster status. Change to the Status tab.
+1.	Start the **Cluster WebUI** to view the cluster status. Change to the **Status** tab.
 
 2.	Start the Cluster (if it hasn't started yet).
 
