@@ -18,7 +18,7 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
     
        Enable RDP if remote access to the server is required. If RDP is enabled, it is also recommended to change the power settings to keep the PC awake and discoverable to facilitate connections.
 
-4.	Set the SAN policy for newly discovered disks \[[Set SAN Policy.bat](Scripts/02%20Set%20SAN%20Policy.bat)\]
+4.	Set the SAN policy for newly discovered disks to *onlineall* \[[Set SAN Policy.bat](Scripts/02%20Set%20SAN%20Policy.bat)\]
 	```
        C:\diskpart
        DISKPART> san policy=onlineall
