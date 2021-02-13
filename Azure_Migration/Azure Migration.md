@@ -53,7 +53,7 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
 
 2.	Enable Network Discovery (optional)
 
-       Log in, and when prompted, click Yes to allow your PC to be discoverable by other PCs. If you miss this opening dialog, turn network discovery on in *Network and Sharing Center*. \[[Enable Discovery.bat\]](Scripts/06%20Enable%20Discovery.bat)
+       Log in, and when prompted, click **Yes** to allow your PC to be discoverable by other PCs. If you miss this opening dialog, turn network discovery on in *Network and Sharing Center*. \[[Enable Discovery.bat\]](Scripts/06%20Enable%20Discovery.bat)
 
        *Settings->Network & Internet->Network and Sharing Center->Change advanced sharing settings*
 
