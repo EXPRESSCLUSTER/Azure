@@ -38,7 +38,7 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
 
        Launch the EXPRESSCLUSTER Cluster WebUI. Change to Config Mode and remove the resource.
 
-7.	Shut down the On-premise VMs \[ECX Shutdown.bat\]
+7.	Shut down the On-premise VMs \[[ECX Shutdown.bat\]](04%20ECX%20Shutdown.bat)
 
        Shut down from the EXPRESSCLUSTER WebUI or execute the command *clpstdn.exe*.
 
