@@ -1,6 +1,6 @@
 # On-Premise EXPRESSCLUSTER Windows VM Migration to Azure
 
-When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud requires several pre-migration steps and post-migrations steps in order to make a smoother transition. This guide provides those important steps. Please note that the location to find the Windows settings for a specific task are listed below the step name. If there is a script to perform that task, it is listed in brackets next to the step. Manual instructions for most tasks are included below the step. All included scripts should be run with elevated privileges.
+Migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud requires several pre-migration steps and post-migrations steps in order to make a smoother transition. This guide provides those important steps. Please note that the location to find the Windows settings for a specific task are listed below the step name. If there is a script to perform that task, it is listed in brackets next to the step. Manual instructions for most tasks are included below the step. All included scripts should be run with elevated privileges.
 
 ## Before Migration - perform on both servers
 
@@ -8,7 +8,7 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
 ```
        C:\sfc.exe /scannow
 ```
-2.	Install Windows Updates and restart servers
+2.	Install Windows Updates and restart servers.
 
        *Settings->Update & Security*
 
@@ -34,7 +34,7 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
 
        SQL Server services – should be already set to manual.
 
-6.	Remove **FIP** or **VIP** resources using the **Cluster WebUI**
+6.	Remove **FIP** or **VIP** resources using the **Cluster WebUI**.
 
        Launch the **EXPRESSCLUSTER WebUI**. Change to **Config Mode** and remove the resource.
 
@@ -51,7 +51,7 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
 
 1.	Turn on Azure VMs if not automatically started and connect to both VMs.
 
-2.	Enable Network Discovery (optional)
+2.	Enable Network Discovery (optional).
 
        Log in, and when prompted, click **Yes** to allow your PC to be discoverable by other PCs. If you miss this opening dialog, turn network discovery on in *Network and Sharing Center*. \[[Enable Discovery.bat\]](Scripts/06%20Enable%20Discovery.bat)
 
@@ -73,13 +73,13 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
        clpcfset add device server2 lan 0 192.168.0.20
        clpcfset add device server2 mdc 0 192.168.0.20
 	```
-    *modify with your server names and IP addresses
+    *modify with your server names and IP addresses.
 
 5.	REPEAT steps 1 – 4 on the other server before continuing
 
 6.	Start the ECX services on BOTH servers \[[StartECXsrvc.bat](Scripts/08%20StartECXsrvc.bat)\]
 
-       *When services start, the cluster should also start automatically. Also note that the EXPRESSCLUSTER API service may start and then stop after starting since it is "not in use"
+       *When services start, the cluster should also start automatically. Also note that the EXPRESSCLUSTER API service may start and then stop after starting since it is "not in use".
 
 7.	Change altered services startup types from "Manual" back to "Automatic" in Services Manager on BOTH servers. \[[Setsrvcauto.bat](Scripts/09%20Setsrvcauto.bat)\]
 
