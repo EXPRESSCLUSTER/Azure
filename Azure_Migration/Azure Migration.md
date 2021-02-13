@@ -61,7 +61,7 @@ Migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud require
 
        *Computer Management->Disk Management*
 
-4.	Change IP addresses in **CLP.CONF** for both servers and mdcs on each server (if new IP addresses were assigned)    
+4.	Change IP addresses in **CLP.CONF** for both servers and mdcs on each server (if new IP addresses were assigned).    
        \*Create a backup of CLP.CONF first \[[*cfset.bat \<server name\> \<lan\&mdc pos.\> \<IP address\>*](Scripts/07%20cfset.bat)\]
 
        Use the tool *clpcfset.exe* located in the EXPRESSCLUSTER\bin folder to simplify the process. Change the current directory to C:\Program Files\EXPRESSCLUSTER\etc. 
