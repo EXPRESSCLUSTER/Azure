@@ -6,7 +6,7 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
 
 1.	Run System File Checker from the command prompt to find any integrity issues:
 ```
-       sfc.exe /scannow
+       C:\sfc.exe /scannow
 ```
 2.	Install Windows Updates and restart servers
 
