@@ -66,13 +66,13 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
        Use the tool clpcfset.exe located in the EXPRESSCLUSTER\bin folder to simplify the process. Change the current directory to C:\Program Files\EXPRESSCLUSTER\etc. 
 
        Example (assuming one lan and one mirror disk):
-```
+	```
        clpcfset add device server1 lan 0 192.168.0.10
        clpcfset add device server1 mdc 0 192.168.0.10
        clpcfset add device server2 lan 0 192.168.0.20
        clpcfset add device server2 mdc 0 192.168.0.20
-```
-      *modify with your server names and IP addresses
+	```
+    *modify with your server names and IP addresses
 
 5.	REPEAT steps 1 – 4 on the other server before continuing
 
