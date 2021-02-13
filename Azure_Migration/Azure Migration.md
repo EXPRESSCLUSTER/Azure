@@ -32,11 +32,11 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
 
        *clpsvcctrl.bat is located in the ECX bin folder and is in the Windows path.
 
-       SQL Server services – should be already set to manual
+       SQL Server services – should be already set to manual.
 
-6.	Remove **FIP** or **VIP** resources using **Cluster WebUI**
+6.	Remove **FIP** or **VIP** resources using the **Cluster WebUI**
 
-       Launch the EXPRESSCLUSTER Cluster WebUI. Change to Config Mode and remove the resource.
+       Launch the **EXPRESSCLUSTER WebUI**. Change to **Config Mode** and remove the resource.
 
 7.	Shut down the On-premise VMs \[[ECX Shutdown.bat](Scripts/04%20ECX%20Shutdown.bat)\]
 
