@@ -19,12 +19,12 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
        Enable RDP if remote access to the server is required. If RDP is enabled, it is also recommended to change the power settings to keep the PC awake and discoverable to facilitate connections.
 
 4.	Set the SAN policy for newly discovered disks \[Set SAN Policy.bat\]
-```
+	```
        C:\diskpart
        DISKPART> san policy=onlineall
        DISKPART> exit
-```
-This setting ensures that disks are brought online after migration, and that both disks can be read and written to. If this step is omitted, the mirror disks on the Azure VM will need to be set Online before starting the EXPRESSCLUSTER cluster services.
+	```
+    This setting ensures that disks are brought online after migration, and that both disks can be read and written to. If this step is omitted, the mirror disks on the Azure VM will need to be set Online before starting the EXPRESSCLUSTER cluster services.
 
 5.	Change service startup types from "Automatic" to "Manual" \[setsrvcman.bat\]
 
@@ -61,18 +61,18 @@ This setting ensures that disks are brought online after migration, and that bot
        *Computer Management->Disk Management*
 
 4.	Change IP addresses in CLP.CONF for both servers and mdcs on each server (if new IP addresses were assigned)    
-       *Create backup of CLP.CONF first \[cfset.bat \<server name\> \<lan\&mdc pos.\> \<IP address\>\]
+       \*Create a backup of CLP.CONF first \[*cfset.bat \<server name\> \<lan\&mdc pos.\> \<IP address\>*\]
 
        Use the tool clpcfset.exe located in the EXPRESSCLUSTER\bin folder to simplify the process. Change the current directory to C:\Program Files\EXPRESSCLUSTER\etc. 
 
        Example (assuming one lan and one mirror disk):
-```
+	```
        clpcfset add device server1 lan 0 192.168.0.10
        clpcfset add device server1 mdc 0 192.168.0.10
        clpcfset add device server2 lan 0 192.168.0.20
        clpcfset add device server2 mdc 0 192.168.0.20
-```
-*modify with your server names and IP addresses
+	```
+    *modify with your server names and IP addresses
 
 5.	REPEAT steps 1 – 4 on the other server before continuing
 
