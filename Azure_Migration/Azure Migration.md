@@ -26,7 +26,7 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
 	```
     This setting ensures that disks are brought online after migration, and that both disks can be read and written to. If this step is omitted, the mirror disks on the Azure VM will need to be set Online before starting the EXPRESSCLUSTER cluster services.
 
-5.	Change service startup types from "Automatic" to "Manual" \[[setsrvcman.bat\]](Scripts/03%20Setsrvcman.bat)
+5.	Change service startup types from "Automatic" to "Manual" \[[Setsrvcman.bat\]](Scripts/03%20Setsrvcman.bat)
 
        ECX services:  Run "***clpsvcctrl.bat --disable -a***" from a command prompt.
 
