@@ -34,7 +34,7 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
 
        SQL Server services – should be already set to manual
 
-6.	Remove FIP or VIP resources using Cluster WebUI
+6.	Remove **FIP** or **VIP** resources using **Cluster WebUI**
 
        Launch the EXPRESSCLUSTER Cluster WebUI. Change to Config Mode and remove the resource.
 
@@ -61,7 +61,7 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
 
        *Computer Management->Disk Management*
 
-4.	Change IP addresses in CLP.CONF for both servers and mdcs on each server (if new IP addresses were assigned)    
+4.	Change IP addresses in **CLP.CONF** for both servers and mdcs on each server (if new IP addresses were assigned)    
        \*Create a backup of CLP.CONF first \[[*cfset.bat \<server name\> \<lan\&mdc pos.\> \<IP address\>*\]](Scripts/07%20cfset.bat)
 
        Use the tool clpcfset.exe located in the EXPRESSCLUSTER\bin folder to simplify the process. Change the current directory to C:\Program Files\EXPRESSCLUSTER\etc. 
@@ -77,7 +77,7 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
 
 5.	REPEAT steps 1 – 4 on the other server before continuing
 
-6.	Start the ECX services on BOTH servers \[startECXsrvc.bat\]
+6.	Start the ECX services on BOTH servers \[[StartECXsrvc.bat\]](Scripts/08%20StartECXsrvc.bat)
 
        *When services start, the cluster should also start automatically. Also note that the EXPRESSCLUSTER API service may start and then stop after starting since it is "not in use"
 
