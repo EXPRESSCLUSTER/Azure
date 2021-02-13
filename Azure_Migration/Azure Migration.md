@@ -19,12 +19,12 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
        Enable RDP if remote access to the server is required. If RDP is enabled, it is also recommended to change the power settings to keep the PC awake and discoverable to facilitate connections.
 
 4.	Set the SAN policy for newly discovered disks \[Set SAN Policy.bat\]
-```
+	```
        C:\diskpart
        DISKPART> san policy=onlineall
        DISKPART> exit
-```
-This setting ensures that disks are brought online after migration, and that both disks can be read and written to. If this step is omitted, the mirror disks on the Azure VM will need to be set Online before starting the EXPRESSCLUSTER cluster services.
+	```
+    This setting ensures that disks are brought online after migration, and that both disks can be read and written to. If this step is omitted, the mirror disks on the Azure VM will need to be set Online before starting the EXPRESSCLUSTER cluster services.
 
 5.	Change service startup types from "Automatic" to "Manual" \[setsrvcman.bat\]
 
