@@ -18,7 +18,7 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
     
        Enable RDP if remote access to the server is required. If RDP is enabled, it is also recommended to change the power settings to keep the PC awake and discoverable to facilitate connections.
 
-4.	Set the SAN policy for newly discovered disks \[[Set SAN Policy.bat\]](Scripts/02%20Set%20SAN%20Policy.bat)
+4.	Set the SAN policy for newly discovered disks \[[Set SAN Policy.bat](Scripts/02%20Set%20SAN%20Policy.bat)\]
 	```
        C:\diskpart
        DISKPART> san policy=onlineall
@@ -26,7 +26,7 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
 	```
     This setting ensures that disks are brought online after migration, and that both disks can be read and written to. If this step is omitted, the mirror disks on the Azure VM will need to be set Online before starting the EXPRESSCLUSTER cluster services.
 
-5.	Change service startup types from "Automatic" to "Manual" \[[Setsrvcman.bat\]](Scripts/03%20Setsrvcman.bat)
+5.	Change service startup types from "Automatic" to "Manual" \[[Setsrvcman.bat](Scripts/03%20Setsrvcman.bat)\]
 
        ECX services:  Run "***clpsvcctrl.bat --disable -a***" from a command prompt.
 
@@ -38,7 +38,7 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
 
        Launch the EXPRESSCLUSTER Cluster WebUI. Change to Config Mode and remove the resource.
 
-7.	Shut down the On-premise VMs \[[ECX Shutdown.bat\]](Scripts/04%20ECX%20Shutdown.bat)
+7.	Shut down the On-premise VMs \[[ECX Shutdown.bat](Scripts/04%20ECX%20Shutdown.bat)\]
 
        Shut down from the EXPRESSCLUSTER WebUI or execute the command *clpstdn.exe*.
 
@@ -62,7 +62,7 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
        *Computer Management->Disk Management*
 
 4.	Change IP addresses in **CLP.CONF** for both servers and mdcs on each server (if new IP addresses were assigned)    
-       \*Create a backup of CLP.CONF first \[[*cfset.bat \<server name\> \<lan\&mdc pos.\> \<IP address\>*\]](Scripts/07%20cfset.bat)
+       \*Create a backup of CLP.CONF first \[[*cfset.bat \<server name\> \<lan\&mdc pos.\> \<IP address\>*](Scripts/07%20cfset.bat)\]
 
        Use the tool clpcfset.exe located in the EXPRESSCLUSTER\bin folder to simplify the process. Change the current directory to C:\Program Files\EXPRESSCLUSTER\etc. 
 
@@ -77,11 +77,11 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
 
 5.	REPEAT steps 1 – 4 on the other server before continuing
 
-6.	Start the ECX services on BOTH servers \[[StartECXsrvc.bat\]](Scripts/08%20StartECXsrvc.bat)
+6.	Start the ECX services on BOTH servers \[[StartECXsrvc.bat](Scripts/08%20StartECXsrvc.bat)\]
 
        *When services start, the cluster should also start automatically. Also note that the EXPRESSCLUSTER API service may start and then stop after starting since it is "not in use"
 
-7.	Change altered services startup types from "Manual" back to "Automatic" in Services Manager on BOTH servers. \[setsrvcauto.bat\]
+7.	Change altered services startup types from "Manual" back to "Automatic" in Services Manager on BOTH servers. \[[Setsrvcauto.bat](Scripts/09%20Setsrvcauto.bat)\]
 
        ECX services:  Run "***clpsvcctrl.bat --enable -a***" from a command prompt.
 
