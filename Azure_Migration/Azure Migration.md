@@ -12,7 +12,7 @@ When migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud re
 
        *Settings->Update & Security*
 
-3.	Enable RDP (optional) \[[Enable RDP.bat\]](Scripts/01%20Enable%20RDP.bat)
+3.	Enable RDP (optional) \[[Enable RDP.bat]\](Scripts/01%20Enable%20RDP.bat)
 
        *Settings->System->Remote Desktop->Enable Remote Desktop*
     
