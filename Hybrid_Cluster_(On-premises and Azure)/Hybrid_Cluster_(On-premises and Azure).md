@@ -1,6 +1,7 @@
 # Hybrid cluster (On-premises and Azure)
 This guide provides instructions on how to create a Site-to-Site VPN tunnel between an Azure site and on-premises site. Instead of using a VPN device on the on-premises site, RRAS is configured on a server to provide VPN access. A Hybrid Azure/On-premises cluster can then be created with EXPRESSCLUSTER software. Testing was done on Windows 2019 Datacenter Servers.    
 
+**\<Put graphic here\!!>**
 ## Prerequisites
 - Azure subscription
 - One On-premises Windows VM Server and one Azure Windows VM Server, each server with 2 disks
