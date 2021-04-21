@@ -68,11 +68,16 @@ Notes:
 The original script can be downloaded from https://github.com/Azure/Azure-vpn-config-samples/blob/master/Microsoft/microsoft-rras-windows-server-2012-r2.ps1.xslt.
 I followed the instructions from the article [Site to Site VPN with RRAS](https://qiita.com/mino_s2000/items/9a714e9e79101ca38f13) to convert the script from XSLT to PowerShell, and make the variables more easy to modify. The RRAS script was originally created for Windows Server 2012 R2, but it worked on a Windows 2019 Server. This page is in Japanese but you can follow the changes that need to be made.   
    
-The VPN should now make a connection between the Azure site and on-premises site. Verify the connectivity status from Azure by accessing the Local network gateway resource and view Connections. The Routing and Remote Access console will show connection status from Network Interfaces on the on-premises server. You may need to create traffic (like pinging an Azure IP address) to activate the demand-dial interface. You can try pinging the Azure public IP address or use the PowerShell command:
-Test-Netconnection <IP address>  -InformationLevel Detailed
+With RRAS installed and configured, the VPN should now make a connection between the Azure site and on-premises site. Verify the connectivity status from Azure by accessing the **Local network gateway** resource and view **Connections**. The **Routing and Remote Access** console will show connection status from **Network Interfaces** on the on-premises server. You may need to create traffic (like pinging an Azure IP address) to activate the demand-dial interface. You can try pinging the Azure public IP address or use the PowerShell command:   
+```
+       Test-Netconnection <IP address>  -InformationLevel Detailed
+```
 The script should run the following PowerShell command to connect to Azure:
-Connect-VpnS2SInterface -Name <Azure Public IP address>
-The connection can also be verified with Get-VpnS2SInterface.
+```
+       Connect-VpnS2SInterface -Name <Azure Public IP address>
+```
+The connection can also be verified with *Get-VpnS2SInterface*.
+
 Create VM on Azure
 If you have not done so, install a VM in Azure on a subnet of the virtual network create beforehand. It will also need a second disk for mirroring data. Create the necessary Cluster and Data partitions on the second disk, identical to the one created on the on-premises server.
 Be sure that the Azure VM and the on-premises VM’s can ping each other before continuing.
