@@ -21,18 +21,18 @@ This guide describes how to create a Site-to-Site VPN tunnel between an Azure si
 10. Client notes
 
 ## Notable resources
-There are several values which you will need to prepare ahead of time. The key values which are used multiple times are listed here:
-	Azure User Name and Password
-	Azure Tenant ID
-	Azure Resource Group
-	Azure Region
-	Azure Virtual network address space
-	Azure Virtual network gateway Public IP address
-	Azure Zone Name
-	Azure Zone Record Set Name
-	On-premises internet facing Public IP address
-	On-premises network address space
-	IP addresses for each ECX node
+There are several values which you will need to prepare ahead of time. It is recommended to make special note of the following key values which are used multiple times:
+   - Azure User Name and Password
+   - Azure Tenant ID
+   - Azure Resource Group
+   - Azure Region
+   - Azure Virtual network address space
+   - Azure Virtual network gateway Public IP address
+   - Azure Zone Name
+   - Azure Zone Record Set Name
+   - On-premises internet facing Public IP address
+   - On-premises network address space
+   - IP addresses for each ECX node
 
 Create a Site-to-Site IPsec VPN tunnel in Azure
 Sign into the Azure portal and create the following resources:
