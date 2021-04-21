@@ -57,16 +57,16 @@ Microsoft has more information about [DNS zones](https://docs.microsoft.com/en-u
 ## Configure the On-premises site
 1. Install a VM to the on-premises site on the same network referenced by the Azure local network gateway. It will need a second disk for mirroring data. Create the necessary Cluster and Data partitions on the second disk. Click [here](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/504/W42_RG_EN/W_RG_03.html#understanding-mirror-disk-resources) for more information on setting up mirror disks. Scroll down to the **Data partition** and **Cluster partition** sections.
 2. Download the RRAS installation script <script name and link> and copy it to your on-premises server.
-3. Change the following variable in the script to the values in your environment:
+3. Change the following variables in the script to the values for your Azure environment:
 ```
-      $SP_AzureGatewayIpAddress (Azure Virtual network gateway Public IP address)
-      $SP_Subnet (Azure Virtual network address space)
-      $SP_PresharedKey (Site to Site VPN connection Shared Key)
+       $SP_AzureGatewayIpAddress (Azure Virtual network gateway Public IP address)
+       $SP_Subnet (Azure Virtual network address space)
+       $SP_PresharedKey (Site to Site VPN connection Shared Key)
 ```
-4. Run the script from an elevated PowerShell window to install and configure RRAS.
-Notes:
+4. Run the script from an elevated PowerShell window to install and configure RRAS.   
+Notes:   
 The original script can be downloaded from https://github.com/Azure/Azure-vpn-config-samples/blob/master/Microsoft/microsoft-rras-windows-server-2012-r2.ps1.xslt.
-I used this article Site to Site VPN with RRAS to convert the script from XSLT to PowerShell, and make the variables more easy to modify. The script worked on a Windows 2019 Server. This page is in Japanese.
+I used this article Site to Site VPN with RRAS to convert the script from XSLT to PowerShell, and make the variables more easy to modify. The script worked on a Windows 2019 Server. This page is in Japanese.   
 The VPN should now make a connection between the Azure site and on-premises site. Verify the connectivity status from Azure by accessing the Local network gateway resource and view Connections. The Routing and Remote Access console will show connection status from Network Interfaces on the on-premises server. You may need to create traffic (like pinging an Azure IP address) to activate the demand-dial interface. You can try pinging the Azure public IP address or use the PowerShell command:
 Test-Netconnection <IP address>  -InformationLevel Detailed
 The script should run the following PowerShell command to connect to Azure:
