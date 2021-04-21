@@ -3,16 +3,24 @@ This guide describes how to create a Site-to-Site VPN tunnel between an Azure si
 
 ## Prerequisites
 - Azure subscription
-- 2 Windows VM Servers (On-premises and Azure), each server with 2 disks
+- One On-premises Windows VM Server and one Azure Windows VM Server, each server with 2 disks
 - Witness VM server in Azure (for NP resolution)
 - On-premises external public IP address
 - Client VM (Optional)
 
-- Azure Site-to-Site connection (including a virtual network, VPN gateway, local network gateway, and VPN connection)
-- Azure DNS Zone
-- RRAS installed on the On-premises Windows Server
+## Overview of setup and configuration steps
+1. Azure virtual network
+2. Azure VPN gateway
+3. Azure local network gateway
+4. Azure VPN connection
+5. Azure DNS Zone
+6. RRAS installed on the On-premises Windows Server
+7. Install EXPRESSCLUSTER on both nodes
+8. Create and configure a cluster
+9. Set up a Witness server
+10. Client notes
 
-
+## Notable resources
 There are several values which you will need to prepare ahead of time. The key values which are used multiple times are listed here:
 	Azure User Name and Password
 	Azure Tenant ID
