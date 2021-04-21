@@ -55,7 +55,7 @@ This resource will be needed later for the Azure DNS resource in EXPRESSCLUSTER.
 Microsoft has more information about [DNS zones](https://docs.microsoft.com/en-us/azure/dns/dns-getstarted-portal). 
 
 ## Configure the On-premises site
-1. Install a VM to the on-premises site on the same network referenced by the Azure local network gateway. It will need a second disk for mirroring data. Create the necessary Cluster and Data partitions on the second disk. Click [here](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/504/W42_RG_EN/W_RG_03.html#understanding-mirror-disk-resources) for more information on setting up mirror disks. Scroll down to the **Data partition** and **Cluster partition** sections.
+1. Install a VM to the on-premises site (for the on-premises side cluster node) on the same network referenced by the Azure local network gateway. It will need a second disk for mirroring data. Create the necessary Cluster and Data partitions on the second disk. Click [here](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/504/W42_RG_EN/W_RG_03.html#understanding-mirror-disk-resources) for more information on setting up mirror disks. Scroll down to the **Data partition** and **Cluster partition** sections.
 2. Download the RRAS installation script \****<script name and link>***\* and copy it to your on-premises server.
 3. Change the following variables in the script to the values for your Azure environment:
 ```
@@ -79,9 +79,9 @@ The script should run the following PowerShell command to connect to Azure:
 The connection can also be verified with *Get-VpnS2SInterface*.
 
 ## Create VM on Azure
-If you have not done so, install a VM in Azure on a subnet of the virtual network create beforehand. It will also need a second disk for mirroring data. Create the necessary Cluster and Data partitions on the second disk, identical to the one created on the on-premises server.   
+If you have not done so, install a VM in Azure (for the Azure side cluster node) on a subnet of the virtual network created beforehand. It will also need a second disk for mirroring data. Create the necessary **Cluster** and **Data** partitions on the second disk, identical to the one created on the on-premises server.   
    
-**Be sure that the Azure VM and the on-premises VM’s can ping each other before continuing.**
+**Be sure that the Azure VM and the on-premises VM can ping each other before continuing.**
 
 ## Preparation for Azure DNS resource
 1.	Install the Azure CLI on each node
