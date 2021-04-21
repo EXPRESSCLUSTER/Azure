@@ -78,10 +78,12 @@ The script should run the following PowerShell command to connect to Azure:
 ```
 The connection can also be verified with *Get-VpnS2SInterface*.
 
-Create VM on Azure
-If you have not done so, install a VM in Azure on a subnet of the virtual network create beforehand. It will also need a second disk for mirroring data. Create the necessary Cluster and Data partitions on the second disk, identical to the one created on the on-premises server.
-Be sure that the Azure VM and the on-premises VM’s can ping each other before continuing.
-Preparation for Azure DNS resource
+## Create VM on Azure
+If you have not done so, install a VM in Azure on a subnet of the virtual network create beforehand. It will also need a second disk for mirroring data. Create the necessary Cluster and Data partitions on the second disk, identical to the one created on the on-premises server.   
+   
+**Be sure that the Azure VM and the on-premises VM’s can ping each other before continuing.**
+
+## Preparation for Azure DNS resource
 1.	Install the Azure CLI on each node
 2.	Create a server principal using the Azure CLI
 Note that the output for this step is a certificate which can be used by the Azure DNS resource to access the Azure zone to manage a DNS record.
