@@ -115,7 +115,7 @@ The **winser** command to register and start the Witness server service in step 
 Since the witness heartbeat resource uses the ECX HTTP network partition resolution resource as well, an inbound port rule to allow port 80 needs to be created on the witness server’s NIC and through the VM’s local firewall.
 
 ### Witness heartbeat resource configuration in EXPRESSCLUSTER
-An explanation of the witness heartbeat resource can be found [here](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/504/W42_RG_EN/W_RG_05.html#understanding-witness-heartbeat-resources). 
+An explanation of the witness heartbeat resource can be found in the Resource Guide [here](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/504/W42_RG_EN/W_RG_05.html#understanding-witness-heartbeat-resources). 
 1. Open the **Cluster WebUI**.
 2. Change to **Config mode**.
 3. Click on the **Cluster** properties gear icon.
@@ -140,5 +140,5 @@ If you have a client VM on the Azure network, it can be configured to connect to
 You should now be able to access the DNS record created by EXPRESSCLUSTER from the client. The full record name from the example in the user’s guide would be *test-record1.cluster1.zone*. If you pinged that entry from the client machine, you should get the IP address of the active EXPRESSCLUSTER node.
 
 ### TTL setting
-The default TTL value of the Azure DNS record is 3600 seconds. You need to change it to a much lower value in order for DNS updates to occur quickly after a failover from one cluster node to the other. You can manually change the TTL of the record, but when the record is modified due to a failover, for some reason it is reset to 3600 seconds. A workaround has been created so that your desired TTL will be permanent. Follow the instructions from the Azure GitHUB page titled [Workaround for AzureCLI issue](https://github.com/EXPRESSCLUSTER/Azure/blob/master/Workaround-for-AzureCLI-issue.md) to be performed on the Azure DNS resource in EXPRESSCLUSTER.
+The default TTL value of the Azure DNS record is 3600 seconds. You need to change it to a much lower value in order for DNS updates to occur quickly after a failover from one cluster node to the other. You can manually change the TTL of the record, but when the record is modified due to a failover, for some reason, most likely a bug, it is reset to 3600 seconds. A workaround has been created so that your desired TTL will be permanent. Follow the instructions from the Azure GitHUB page titled [Workaround for AzureCLI issue](https://github.com/EXPRESSCLUSTER/Azure/blob/master/Workaround-for-AzureCLI-issue.md) to be performed on the Azure DNS resource in EXPRESSCLUSTER.
 
