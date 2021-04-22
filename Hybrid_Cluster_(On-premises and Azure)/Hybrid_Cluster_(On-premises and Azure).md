@@ -65,8 +65,7 @@ Microsoft has more information about [DNS zones](https://docs.microsoft.com/en-u
        $SP_PresharedKey (Site to Site VPN connection Shared Key)
 ```
 4. Run the script from an elevated PowerShell window to install and configure RRAS.   
-Notes:   
-The original script can be downloaded from https://github.com/Azure/Azure-vpn-config-samples/blob/master/Microsoft/microsoft-rras-windows-server-2012-r2.ps1.xslt.
+Notes: The original script can be downloaded from https://github.com/Azure/Azure-vpn-config-samples/blob/master/Microsoft/microsoft-rras-windows-server-2012-r2.ps1.xslt.
 I followed the instructions from the article [Site to Site VPN with RRAS](https://qiita.com/mino_s2000/items/9a714e9e79101ca38f13) to convert the script from XSLT to PowerShell, and make the variables more easy to modify. The RRAS script was originally created for Windows Server 2012 R2, but it worked on a Windows 2019 Server. This page is in Japanese but you can follow the changes that need to be made.   
    
 With RRAS installed and configured, the VPN should now make a connection between the Azure site and on-premises site. Verify the connectivity status from Azure by accessing the **Local network gateway** resource and view **Connections**. The **Routing and Remote Access** console will show connection status from **Network Interfaces** on the on-premises server. You may need to create traffic (like pinging an Azure IP address) to activate the demand-dial interface. You can try pinging the Azure public IP address or use the PowerShell command:   
