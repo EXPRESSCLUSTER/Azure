@@ -88,7 +88,7 @@ If you have not done so, install a VM in Azure (for the Azure side cluster node)
 2. Create a server principal using the Azure CLI   
 Note that the output for this step is a certificate which can be used by the Azure DNS resource to access the Azure zone to manage a DNS record.
 
-See the [Instructions for performing these steps](https://www.nec.com/en/global/prod/expresscluster/en/support/setup/HOWTO_AZURE_X42_Windows_EN_02.pdf#page=50) - scroll down to **step 8** and proceed from there. These instructions provide a link to the Azure CLI.
+See the [Instructions for performing these steps](https://www.nec.com/en/global/prod/expresscluster/en/support/setup/HOWTO_AZURE_X42_Windows_EN_02.pdf#page=50) - scroll down to **step 8** and proceed from there. These instructions provide a link to download the Azure CLI.
 
 Additional notes:
 - You need to make note of the certificate’s output since the certificate is encrypted and contents are unreadable. Write down the “name” (URI) and tenant ID.
