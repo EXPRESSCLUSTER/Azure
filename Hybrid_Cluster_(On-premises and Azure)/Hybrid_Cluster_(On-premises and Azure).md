@@ -100,13 +100,14 @@ Additional notes:
 Install EXPRESSCLUSTER on the Azure VM using the instructions from [section 4.2.1](https://www.nec.com/en/global/prod/expresscluster/en/support/Windows/W42_IG_EN_02.pdf#page=45 [nec.com]) in the **Installation and Configuration Guide**. If more information on registering a license is needed, click [here](https://www.nec.com/en/global/prod/expresscluster/en/support/Windows/W42_IG_EN_02.pdf#page=51 [nec.com]). Repeat on the on-premises node.
 
 ## Create a cluster
-Create the cluster, including the Azure DNS resource by following the instructions in section 4.3.of the Azure configuration guide. Perform the installation steps on either node up to the Custom monitor resource section since we will not be adding monitor resources. When at the Azure DNS resource configuration page, see the note below about the IP addresses. Skip down to page 67, step 5 to complete the configuration. Follow the instructions in section 4.4 to verify whether the environment is working. See the note about testing by deleting the A record.
+Create the cluster, including the Azure DNS resource, by following the instructions in [section 4.3](https://www.nec.com/en/global/prod/expresscluster/en/support/setup/HOWTO_AZURE_X42_Windows_EN_02.pdf#page=53 [nec.com]) of the Azure configuration guide. Perform the installation steps on the Azure side node and proceed up to the **Custom monitor resource** section. We will not be adding monitor resources. Skip down to **page 67 (of the PDF file), step 5** to complete the configuration. Follow the instructions in section 4.4 to verify whether the environment is working. See the note about testing by deleting the A record.
 
-Additional notes:
-- On the Azure DNS resource details page, enter the primary server IP address in the IP Address field of the common tab and then enter the IP addresses of each server node in the respective tabs at the top.
-- Deleting the A record in the DNS zone will not cause a failover since the record will be recreated before that can happen.
-Witness Server configuration
-On Witness Server
+**Additional notes:**
+- On the Azure DNS resource details page, enter the primary server IP address in the **IP Address** field of the **common** tab and then enter the IP addresses of each server node in the respective tabs at the top.
+- Deleting the A record in the DNS zone will NOT cause a failover since the record will be recreated before that can happen.
+
+## Witness Server configuration
+### On Witness Server
 In order to provide NP resolution, a witness server VM needs to be prepared on Azure with a witness server service. It is best if it is not in the same network or region as the VPN gateway. It also needs a public IP address which can be accessed by each node of the EXPRESCLUSTER cluster, from the Azure site and on-premises site. In order to set up the witness service, you will need to download Node.js (which is required by the witness server service) and locate the witness service module, clpwitnessd-<version>.tgz, which is in a subfolder of the EXPRESSCLUSTER installation. A Node.js installation package can be downloaded from the Nodejs.org page. The witness service module can be found in the EXPRESSCLUSTER installation subfolder Common\4.2\common\tools\witnessd. Copy both files to the witness server and follow the installation guide.
 
 Note:
