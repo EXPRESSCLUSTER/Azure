@@ -91,11 +91,12 @@ Note that the output for this step is a certificate which can be used by the Azu
 See the [Instructions for performing these steps](https://www.nec.com/en/global/prod/expresscluster/en/support/setup/HOWTO_AZURE_X42_Windows_EN_02.pdf#page=50) - scroll down to step 8 and proceed from there. These instructions provide a link to the Azure CLI.
 
 Additional notes:
-- You need to make note of the certificate’s output since the certificate is encrypted. Write down the “name” (URI) and tenant ID.
+- You need to make note of the certificate’s output since the certificate is encrypted and contents are unreadable. Write down the “name” (URI) and tenant ID.
 - You only need to create a certificate on one node and then copy the certificate to the other node. Place the certificate in the same location on each node.
 - Also make note of the path Azure CLI was installed to.
-- See Notes on Azure DNS Resources for more information about this resource.
-Install EXPRESSCLUSTER
+- See [Notes on Azure DNS Resources](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/504/W42_RG_EN/W_RG_03.html#understanding-azure-dns-resources) for more information about this resource.
+
+## Install EXPRESSCLUSTER
 Install EXPRESSCLUSTER on the Azure VM using the instructions from section 4.2.1 in the Installation and Configuration Guide. If more information on registering a license is needed, click here. Repeat on the on-premises node.
 Create a cluster
 Create the cluster, including the Azure DNS resource by following the instructions in section 4.3.of the Azure configuration guide. Perform the installation steps on either node up to the Custom monitor resource section since we will not be adding monitor resources. When at the Azure DNS resource configuration page, see the note below about the IP addresses. Skip down to page 67, step 5 to complete the configuration. Follow the instructions in section 4.4 to verify whether the environment is working. See the note about testing by deleting the A record.
