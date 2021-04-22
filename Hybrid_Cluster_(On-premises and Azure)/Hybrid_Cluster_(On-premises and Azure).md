@@ -100,7 +100,7 @@ Additional notes:
 Install EXPRESSCLUSTER on the Azure VM using the instructions from [section 4.2.1](https://www.nec.com/en/global/prod/expresscluster/en/support/Windows/W42_IG_EN_02.pdf#page=45) in the **Installation and Configuration Guide**. If more information on registering a license is needed, click [here](https://www.nec.com/en/global/prod/expresscluster/en/support/Windows/W42_IG_EN_02.pdf#page=51). Repeat on the on-premises node.
 
 ## Create a cluster
-Create the cluster, including the Azure DNS resource, by following the instructions in [section 4.3](https://www.nec.com/en/global/prod/expresscluster/en/support/setup/HOWTO_AZURE_X42_Windows_EN_02.pdf#page=53) of the Azure configuration guide. Perform the installation steps on the Azure side node and proceed up to the **Custom monitor resource** section. We will not be adding monitor resources. Skip down to **page 67 (of the PDF file), step 5** to complete the configuration. Follow the instructions in section 4.4 to verify whether the environment is working. See the note about testing by deleting the A record.
+Create the cluster, including the Azure DNS resource, by following the instructions in [section 4.3](https://www.nec.com/en/global/prod/expresscluster/en/support/setup/HOWTO_AZURE_X42_Windows_EN_02.pdf#page=53) of the Azure configuration guide. Perform the installation steps on the Azure side node and proceed up to the **Custom monitor resource** section. We will not be adding monitor resources. Skip down to **page 67 (of the PDF file), step 5** to complete the configuration. Follow the instructions in following section (4.4) to verify whether the environment is working. See the note about testing by deleting the A record.
 
 **Additional notes:**
 - On the Azure DNS resource details page, enter the primary server IP address in the **IP Address** field of the **common** tab and then enter the IP addresses of each server node in the respective tabs at the top.
@@ -137,7 +137,7 @@ If you have a client VM on the Azure network, it can be configured to connect to
 5. Click on **DNS servers** and change from **Inherit from virtual network** to **Custom**.
 6. Enter the IP address from the DNS zone’s DNS server and **Save** it.   
 
-You should now be able to access the DNS record created by EXPRESSCLUSTER from the client. The full record name from the example in the user’s guide would be *test-record1.cluster1.zone*. If you pinged that entry from the client machine, you should get the IP address of the active EXPRESSCLUSTER node.
+You should now be able to access the DNS record created by EXPRESSCLUSTER from the client. The full record name from the example in the user’s guide would be *test-record1.cluster1.zone*. If you ping that entry from the client machine, you should get the IP address of the active EXPRESSCLUSTER node.
 
 ### TTL setting
 The default TTL value of the Azure DNS record is 3600 seconds. You need to change it to a much lower value in order for DNS updates to occur quickly after a failover from one cluster node to the other. You can manually change the TTL of the record, but when the record is modified due to a failover, for some reason, most likely a bug, it is reset to 3600 seconds. A workaround has been created so that your desired TTL will be permanent. Follow the instructions from the Azure GitHUB page titled [Workaround for AzureCLI issue](https://github.com/EXPRESSCLUSTER/Azure/blob/master/Workaround-for-AzureCLI-issue.md) to be performed on the Azure DNS resource in EXPRESSCLUSTER.
