@@ -97,10 +97,10 @@ Additional notes:
 - See [Notes on Azure DNS Resources](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/504/W42_RG_EN/W_RG_03.html#understanding-azure-dns-resources) for more information about this resource.
 
 ## Install EXPRESSCLUSTER
-Install EXPRESSCLUSTER on the Azure VM using the instructions from [section 4.2.1](https://www.nec.com/en/global/prod/expresscluster/en/support/Windows/W42_IG_EN_02.pdf#page=45 [nec.com]) in the **Installation and Configuration Guide**. If more information on registering a license is needed, click [here](https://www.nec.com/en/global/prod/expresscluster/en/support/Windows/W42_IG_EN_02.pdf#page=51 [nec.com]). Repeat on the on-premises node.
+Install EXPRESSCLUSTER on the Azure VM using the instructions from [section 4.2.1](https://www.nec.com/en/global/prod/expresscluster/en/support/Windows/W42_IG_EN_02.pdf#page=45) in the **Installation and Configuration Guide**. If more information on registering a license is needed, click [here](https://www.nec.com/en/global/prod/expresscluster/en/support/Windows/W42_IG_EN_02.pdf#page=51). Repeat on the on-premises node.
 
 ## Create a cluster
-Create the cluster, including the Azure DNS resource, by following the instructions in [section 4.3](https://www.nec.com/en/global/prod/expresscluster/en/support/setup/HOWTO_AZURE_X42_Windows_EN_02.pdf#page=53 [nec.com]) of the Azure configuration guide. Perform the installation steps on the Azure side node and proceed up to the **Custom monitor resource** section. We will not be adding monitor resources. Skip down to **page 67 (of the PDF file), step 5** to complete the configuration. Follow the instructions in section 4.4 to verify whether the environment is working. See the note about testing by deleting the A record.
+Create the cluster, including the Azure DNS resource, by following the instructions in [section 4.3](https://www.nec.com/en/global/prod/expresscluster/en/support/setup/HOWTO_AZURE_X42_Windows_EN_02.pdf#page=53) of the Azure configuration guide. Perform the installation steps on the Azure side node and proceed up to the **Custom monitor resource** section. We will not be adding monitor resources. Skip down to **page 67 (of the PDF file), step 5** to complete the configuration. Follow the instructions in section 4.4 to verify whether the environment is working. See the note about testing by deleting the A record.
 
 **Additional notes:**
 - On the Azure DNS resource details page, enter the primary server IP address in the **IP Address** field of the **common** tab and then enter the IP addresses of each server node in the respective tabs at the top.
@@ -108,35 +108,37 @@ Create the cluster, including the Azure DNS resource, by following the instructi
 
 ## Witness Server configuration
 ### On Witness Server
-In order to provide NP resolution, a witness server VM needs to be prepared on Azure with a witness server service. It is best if it is not in the same network or region as the VPN gateway. It also needs a public IP address which can be accessed by each node of the EXPRESCLUSTER cluster, from the Azure site and on-premises site. In order to set up the witness service, you will need to download Node.js (which is required by the witness server service) and locate the witness service module, clpwitnessd-<version>.tgz, which is in a subfolder of the EXPRESSCLUSTER installation. A Node.js installation package can be downloaded from the Nodejs.org page. The witness service module can be found in the EXPRESSCLUSTER installation subfolder Common\4.2\common\tools\witnessd. Copy both files to the witness server and follow the installation guide.
+In order to provide NP resolution, a witness server VM needs to be prepared on Azure with a special witness server service. It is best if it is not in the same network or region as the VPN gateway. It also needs a public IP address which can be accessed by each node of the EXPRESCLUSTER cluster, from both the Azure site and on-premises site. In order to set up the witness service, you will need to download Node.js (which is required by the witness server service). You will also need to locate the witness service module, **clpwitnessd-<version>.tgz**, which is in a subfolder of the EXPRESSCLUSTER installation. A Node.js installation package can be downloaded from the [Nodejs.org page](https://nodejs.org/en/download/). The witness service module can be found in the EXPRESSCLUSTER installation subfolder **Common\4.2\common\tools\witnessd**. Copy both files to the witness server and follow the [installation guide](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/504/W42_RG_EN/W_RG_07.html#witness-server-service).
 
-Note:
-The winser command to register and start the Witness server service in step 4 should be winser -i -a.
+**Note:**
+The **winser** command to register and start the Witness server service in step 4 should be **winser -i -a**.   
 Since the witness heartbeat resource uses the ECX HTTP network partition resolution resource as well, an inbound port rule to allow port 80 needs to be created on the witness server’s NIC and through the VM’s local firewall.
-Witness heartbeat resource configuration in EXPRESSCLUSTER
-An explanation of the witness heartbeat resource can be found here. 
-1.	Open the Cluster WebUI.
-2.	Change to Config mode.
-3.	Click on the Cluster properties gear icon.
-4.	Select the Interconnect tab.
-5.	Click Add to add another heartbeat resource.
-6.	Change the Type of the new entry to Witness. MDC should be set to Do Not Use and each server set to Use.
-7.	Click on the Properties button and enter the Witness server’s Public IP address for the Target Host. The Service Port can be left at 80. Click OK.
+
+### Witness heartbeat resource configuration in EXPRESSCLUSTER
+An explanation of the witness heartbeat resource can be found [here](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/504/W42_RG_EN/W_RG_05.html#understanding-witness-heartbeat-resources). 
+1. Open the **Cluster WebUI**.
+2. Change to **Config mode**.
+3. Click on the **Cluster** properties gear icon.
+4. Select the **Interconnect** tab.
+5. Click **Add** to add another heartbeat resource.
+6. Change the **Type** of the new entry to **Witness**. MDC should be set to **Do Not Use** and each server should be set to **Use**.
+7. Click on the **Properties** button and enter the Witness server’s **Public IP address** for the **Target Host**. The **Service Port** can be left at 80. Click **OK**.   
 (If you click on the NP Resolution tab, there should be a new HTTP Type entry.)
-8.	Click Apply the Configuration File.
-Client
-DNS setting
-If you have a client VM on the Azure network, it can be configured to connect to whichever server is active in the cluster. It will need access to the DNS record in the DNS zone. If you go to the DNS zones page in Azure and click on the zone created previously, you will notice four entries for Name server (1 – 4). Copy the name for Name server 1 e.g. ns1-06.azure-dns.com. Now do the following:
+8. Click **Apply the Configuration File**.
 
-1.	Log into the Azure VM node,  open a command prompt and type nslookup <DNS server name> e.g. nslookup ns1-06.azure-dns.com.
-2.	Copy the IP address from the output.
-3.	In the Azure portal locate the client VM’s page and click on the Networking folder.
-4.	Then click on the network interface.
-5.	Click on DNS servers and change from Inherit from virtual network to Custom.
-6.	Enter the IP address from the DNS zone’s DNS server and Save it.
+## Client
+### DNS setting
+If you have a client VM on the Azure network, it can be configured to connect to whichever server is active in the cluster. It will need access to the DNS record in the DNS zone. If you go to the DNS zones page in Azure and click on the zone created previously, you will notice four entries for **Name server** (1 – 4). Copy the name for *Name server 1* e.g. ns1-06.azure-dns.com. Now do the following:
 
-You should now be able to access the DNS record created by EXPRESSCLUSTER from the client. The full record name from the example in the user’s guide would be test-record1.cluster1.zone. If you pinged that entry from the client machine, you should get the IP address of the active EXPRESSCLUSTER node.
+1. Log into the Azure VM node,  open a command prompt and type **nslookup <DNS server name>** e.g. ***nslookup ns1-06.azure-dns.com***.
+2. Copy the IP address from the output.
+3. In the Azure portal locate the client VM’s page and click on the **Networking** folder.
+4. Then click on the network interface.
+5. Click on **DNS servers** and change from **Inherit from virtual network** to **Custom**.
+6. Enter the IP address from the DNS zone’s DNS server and **Save** it.   
 
-TTL setting
-The default TTL value of the Azure DNS record is 3600 seconds. You need to change it to a much lower value in order for DNS updates to occur quickly after a failover from one cluster node to the other. You can manually change the TTL of the record, but when the record is modified due to a failover, for some reason it is reset to 3600 seconds. A workaround has been created so that your desired TTL will be permanent. Follow the instructions from the Azure GitHUB page titled Workaround for AzureCLI issue.to be performed on the Azure DNS resource in EXPRESSCLUSTER.
+You should now be able to access the DNS record created by EXPRESSCLUSTER from the client. The full record name from the example in the user’s guide would be *test-record1.cluster1.zone*. If you pinged that entry from the client machine, you should get the IP address of the active EXPRESSCLUSTER node.
+
+### TTL setting
+The default TTL value of the Azure DNS record is 3600 seconds. You need to change it to a much lower value in order for DNS updates to occur quickly after a failover from one cluster node to the other. You can manually change the TTL of the record, but when the record is modified due to a failover, for some reason it is reset to 3600 seconds. A workaround has been created so that your desired TTL will be permanent. Follow the instructions from the Azure GitHUB page titled [Workaround for AzureCLI issue](https://github.com/EXPRESSCLUSTER/Azure/blob/master/Workaround-for-AzureCLI-issue.md) to be performed on the Azure DNS resource in EXPRESSCLUSTER.
 
