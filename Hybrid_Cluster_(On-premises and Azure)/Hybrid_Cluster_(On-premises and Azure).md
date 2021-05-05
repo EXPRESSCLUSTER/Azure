@@ -106,7 +106,7 @@ Create the cluster, including the Azure DNS resource, by following the instructi
 
 **Additional notes:**
 - On the Azure DNS resource details page, enter the primary server IP address in the **IP Address** field of the **common** tab and then enter the IP addresses of each server node in the respective tabs at the top.
-- By default, the recovery action of the Azure DNS monitor resource reactivates the Azure DNS resource when an error is detected. Because of the setting in the **Recovery Action** tab of the DNS monitor's property, deleting the A record in the DNS zone will NOT cause a failover since the record will be recreated before that can happen. Failover WILL occur if the reactivation effort fails three times (default setting).
+- By default, the recovery action of the Azure DNS monitor resource reactivates the Azure DNS resource when an error is detected, causing the A record in the DNS zone to be recreated. Because of the default setting in the **Recovery Action** tab of the DNS monitor's property, deleting the A record in the DNS zone will NOT cause a failover. Failover WILL occur if the reactivation effort fails three times (default setting) or if the setting is modified to force a failover sooner.
 
 ## Witness Server configuration
 ### On Witness Server
