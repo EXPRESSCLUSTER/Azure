@@ -4,6 +4,8 @@ This guide provides instructions on how to create a Site-to-Site VPN tunnel betw
 **\<Put graphic here\!!>**
 ## Prerequisites
 - Azure subscription
+- Azure virtual network, VPN gateway, local network gateway, and VPN connection
+- Azure DNS Zone
 - One On-premises Windows VM Server and one Azure Windows VM Server, each server with 2 disks
 - Witness VM server in Azure (for NP resolution)
 - On-premises external public IP address
@@ -104,7 +106,7 @@ Create the cluster, including the Azure DNS resource, by following the instructi
 
 **Additional notes:**
 - On the Azure DNS resource details page, enter the primary server IP address in the **IP Address** field of the **common** tab and then enter the IP addresses of each server node in the respective tabs at the top.
-- Deleting the A record in the DNS zone will NOT cause a failover since the record will be recreated before that can happen.
+- By default, the Azure DNS monitor resource reactivates the Azure DNS resource when an error is detected. Because of the setting in the **Recovery Action** tab of the DNS monitor's property, deleting the A record in the DNS zone will NOT cause a failover since the record will be recreated before that can happen. Failover WILL occur if the reactivation effort fails three times (default setting).
 
 ## Witness Server configuration
 ### On Witness Server
