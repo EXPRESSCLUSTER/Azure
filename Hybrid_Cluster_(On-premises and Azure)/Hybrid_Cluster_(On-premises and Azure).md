@@ -3,7 +3,8 @@ This guide provides instructions on how to create a Site-to-Site VPN tunnel betw
 
 <p align="center">
 <img src="S2S diagram.png")
-</p>
+</p>   
+      
 ## Prerequisites
 - Azure subscription
 - Azure virtual network, VPN gateway, local network gateway, and VPN connection
