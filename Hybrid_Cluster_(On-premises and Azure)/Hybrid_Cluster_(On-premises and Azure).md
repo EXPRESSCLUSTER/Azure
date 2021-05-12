@@ -159,4 +159,5 @@ GitHub user _cvs79_ has created an [Azure ARM template](https://github.com/Azure
 7. Click on **Review + create** to apply the template.   
 Note that this template will take some time to deploy.
 
-
+#### DNS Zone
+A template to deploy a DNS zone can be downloaded here. Follow the deployment steps above.
