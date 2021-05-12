@@ -58,7 +58,7 @@ This resource will be needed later for the Azure DNS resource in EXPRESSCLUSTER.
 4. Enter a **Name** for the zone (e.g. *cluster1.zone*).
 5. Click **Review + Create**. After passing validation, click **Create**.
 
-Microsoft has more information about [DNS zones](https://docs.microsoft.com/en-us/azure/dns/dns-getstarted-portal). 
+Microsoft has more information about [DNS zones](https://docs.microsoft.com/en-us/azure/dns/dns-getstarted-portal). Jump to the [Templates](#Templates) section if you would like to deploy the DNS zone using a template.
 
 ## Configure the On-premises site
 1. Install a VM to the on-premises site (for the on-premises side cluster node) on the same network referenced by the Azure local network gateway. It will need a second disk for mirroring data. Create the necessary Cluster and Data partitions on the second disk. Click [here](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/504/W42_RG_EN/W_RG_03.html#understanding-mirror-disk-resources) for more information on setting up mirror disks. Scroll down to the **Data partition** and **Cluster partition** sections.
