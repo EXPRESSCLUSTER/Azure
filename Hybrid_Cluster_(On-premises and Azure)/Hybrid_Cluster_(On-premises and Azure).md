@@ -149,7 +149,7 @@ The default TTL value of the Azure DNS record is 3600 seconds. You need to chang
 
 ### Templates
 #### Site-to-Site VPN
-GitHub user _cvs79_ has created an [Azure ARM template](https://github.com/Azure/azure-quickstart-templates/tree/master/101-site-to-site-vpn-create) in the Azure Quick Start templates repository which performs everything needed to set up a Site-to-Site VPN connection. This includes a Virtual network, a VPN (Virtual network) gateway, a Local network gateway, and a VPN connection. I have slightly modified some strings in the template and have the files available [here](S2S_Template). If you deploy the template from the Azure portal, the parameter strings can be easily changed to suit your needs. Here are the steps to do that:   
+GitHub user _cvs79_ has created an [Azure ARM template](https://github.com/Azure/azure-quickstart-templates/tree/master/101-site-to-site-vpn-create) in the Azure Quick Start templates repository which performs everything needed to set up a Site-to-Site VPN connection. This includes a Virtual network, a VPN (Virtual network) gateway, a Local network gateway, and a VPN connection. I have slightly modified some strings in the template and have the files available [here](S2S_Template) (use azuredeploy.json). If you deploy the template from the Azure portal, the parameter strings can be easily changed to suit your needs. Here are the steps to do that:   
 1. From the Azure Portal Search for **Template** and choose **Template deployment (deploy using custom templates)**.
 2. At the **Custom deployment (Deploy from a custom template)** page, select **Build your own template in the editor**.
 3. Choose **Load file**, locate your template on you computer, and click **Open**.
