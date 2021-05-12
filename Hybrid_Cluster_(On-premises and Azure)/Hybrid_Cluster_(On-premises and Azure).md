@@ -156,7 +156,7 @@ GitHub user _cvs79_ has created an [Azure ARM template](https://github.com/Azure
 4. Click **Save** to view the project details.
 5. Select your **Subscription** and create or use an exisiting **Resource group**.
 6. Then edit any fields under **Instance details** which need to be changed.
-7. Click on **Review + create** to apply the template.
-This template will take some time to deploy.
+7. Click on **Review + create** to apply the template.   
+Note that this template will take some time to deploy.
 
 
