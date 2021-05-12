@@ -160,4 +160,4 @@ GitHub user _cvs79_ has created an [Azure ARM template](https://github.com/Azure
 _Note that this template will take some time to deploy_.
 
 #### DNS Zone
-A template to deploy a DNS zone can be downloaded here. Follow the deployment steps above.
+A template to deploy a DNS zone can be downloaded [here](DNS_zone_Template). Follow the deployment steps above.
