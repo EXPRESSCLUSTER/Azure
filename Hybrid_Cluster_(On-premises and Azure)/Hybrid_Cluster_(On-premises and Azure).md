@@ -160,4 +160,4 @@ GitHub user _cvs79_ has created an [Azure ARM template](https://github.com/Azure
 _Note that this template will take some time to deploy_.
 
 #### DNS Zone
-A template to deploy a DNS zone can be downloaded [here](DNS_zone_Template). The source for this template can be found on [Quickstart: Create an Azure DNS zone and record using an ARM template](https://docs.microsoft.com/en-us/azure/dns/dns-get-started-template). Follow the deployment steps above.
+A template to deploy a DNS zone can be downloaded [here](DNS_zone_Template). The source for this template can be found on [Quickstart: Create an Azure DNS zone and record using an ARM template](https://docs.microsoft.com/en-us/azure/dns/dns-get-started-template). I just removed the code to create A records. Follow the deployment steps above.
