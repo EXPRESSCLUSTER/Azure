@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "newZoneName": {
+      "type": "string",
+      "defaultValue": "ecxcluster.zone",
+      "metadata": {
+        "description": "The name of the DNS zone to be created.  Must have at least 2 segements, e.g. hostname.org"
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Network/dnsZones",
+      "apiVersion": "2018-05-01",
+      "name": "[parameters('newZoneName')]",
+      "location": "global"
+    }
+  ],
+  "outputs": {
+    "nameServers": {
+      "type": "array",
+      "value": "[reference(parameters('newZoneName')).nameServers]"
+    }
+  }
+}
