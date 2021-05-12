@@ -148,6 +148,15 @@ You should now be able to access the DNS record created by EXPRESSCLUSTER from t
 The default TTL value of the Azure DNS record is 3600 seconds. You need to change it to a much lower value in order for DNS updates to occur quickly after a failover from one cluster node to the other. You can manually change the TTL of the record, but when the record is modified due to a failover, for some reason, most likely a bug, it is reset to 3600 seconds. A workaround has been created so that your desired TTL will be permanent. Follow the instructions from the Azure GitHUB page titled [Workaround for AzureCLI issue](https://github.com/EXPRESSCLUSTER/Azure/blob/master/Workaround-for-AzureCLI-issue.md) to be performed on the Azure DNS resource in EXPRESSCLUSTER.
 
 ### Templates
-####Site to Site
-GitHub user _cvs79_ has created an [Azure ARM template](https://github.com/Azure/azure-quickstart-templates/tree/master/101-site-to-site-vpn-create) in the Azure Quick Start templates repository which performs everything needed to set up a Site-to-Site VPN connection. This includes a Virtual network, a VPN (Virtual network) gateway, a Local network gateway, and a VPN connection.
+#### Site-to-Site VPN
+GitHub user _cvs79_ has created an [Azure ARM template](https://github.com/Azure/azure-quickstart-templates/tree/master/101-site-to-site-vpn-create) in the Azure Quick Start templates repository which performs everything needed to set up a Site-to-Site VPN connection. This includes a Virtual network, a VPN (Virtual network) gateway, a Local network gateway, and a VPN connection. I have slightly modified some strings in the template and have the files available here. If you deploy the template from the Azure portal, the parameter strings can be easily changed to suit your needs. Here are the steps to do that:   
+1. From the Azure Portal Search for **Template** and choose **Template deployment (deploy using custom templates)**.
+2. At the **Custom deployment (Deploy from a custom template)** page, select **Build your own template in the editor**.
+3. Choose **Load file**, locate your template on you computer, and clcik **Open**.
+4. Click **Save** to view the project details.
+5. Select your **Subscription** and create or use an exisiting **Resource group**.
+6. Then edit any fields under **Instance details** which need to be changed.
+7. Click on **Review + create** to apply the template.
+This template will take some time to deploy.
+
 
