@@ -153,7 +153,7 @@ GitHub user _cvs79_ has created an [Azure ARM template](https://github.com/Azure
 1. From the Azure Portal Search for **Template** and choose **Template deployment (deploy using custom templates)**.
 2. At the **Custom deployment (Deploy from a custom template)** page, select **Build your own template in the editor**.
 3. Choose **Load file**, locate your template on you computer, and click **Open**.
-4. Click **Save** to view the project details.
+4. Click **Save** to view the project details. The fields will be populated with sample data which can be modified.
 5. Select your **Subscription** and create or use an exisiting **Resource group**.
 6. Then edit any fields under **Instance details** which need to be changed.
 7. Click on **Review + create** to apply the template.   
