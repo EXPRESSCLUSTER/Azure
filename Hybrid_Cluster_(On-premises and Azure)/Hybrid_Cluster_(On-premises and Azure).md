@@ -148,3 +148,6 @@ You should now be able to access the DNS record created by EXPRESSCLUSTER from t
 The default TTL value of the Azure DNS record is 3600 seconds. You need to change it to a much lower value in order for DNS updates to occur quickly after a failover from one cluster node to the other. You can manually change the TTL of the record, but when the record is modified due to a failover, for some reason, most likely a bug, it is reset to 3600 seconds. A workaround has been created so that your desired TTL will be permanent. Follow the instructions from the Azure GitHUB page titled [Workaround for AzureCLI issue](https://github.com/EXPRESSCLUSTER/Azure/blob/master/Workaround-for-AzureCLI-issue.md) to be performed on the Azure DNS resource in EXPRESSCLUSTER.
 
 ### Templates
+####Site to Site
+GitHub user _cvs79_ has created an [Azure ARM template](https://github.com/Azure/azure-quickstart-templates/tree/master/101-site-to-site-vpn-create) in the Azure Quick Start templates repository which performs everything needed to set up a Site-to-Site VPN connection. This includes a Virtual network, a VPN (Virtual network) gateway, a Local network gateway, and a VPN connection.
+
