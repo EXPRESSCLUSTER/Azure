@@ -157,7 +157,7 @@ GitHub user _cvs79_ has created an [Azure ARM template](https://github.com/Azure
 5. Select your **Subscription** and create or use an exisiting **Resource group**.
 6. Then edit any fields under **Instance details** which need to be changed.
 7. Click on **Review + create** to apply the template.   
-_Note that this template will take some time to deploy_. [View the template interface](S2S%20Template%20Sample.png).
+_Note that this template will take some time to deploy_. [View the template interface](S2S_Template\S2S%20Template%20Sample.png).
 
 #### DNS Zone
 A template to deploy a DNS zone can be downloaded [here](DNS_zone_Template). The source for this template can be found on [Quickstart: Create an Azure DNS zone and record using an ARM template](https://docs.microsoft.com/en-us/azure/dns/dns-get-started-template). I just removed the code to create A records. Follow the deployment steps above.
