@@ -1,1 +1,1 @@
-
+# Log Analytics Workspace
