@@ -5,3 +5,4 @@ An EXPRESSCLUSTER project was started in early 2023 to analyze ECX log files. On
 This section includes information on scripts that can simplify the setup process.
 
 ### 1. PowerShell script to create a Table in Log Analytics workspace, create a Data Collection Rule (DCR) and Data Collection Endpoint (DCE)
+Bruno Gabrielli created a PowerShell script to create a table in Log Analytics workspace, as well as a DCR and DCE. The scripts and an explanation on how to use them is included in his article titled [Azure Monitor: Gain Observability On Your DHCP Server](https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/azure-monitor-gain-observability-on-your-dhcp-server/ba-p/3865274).
