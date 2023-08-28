@@ -3,4 +3,5 @@ An EXPRESSCLUSTER project was started in early 2023 to analyze ECX log files. On
 
 ## Scripts
 This section includes information on scripts that can simplify the setup process.
-### PowerShell script to create a Table in Log Analytics workspace, create a Data Collection Rule (DCR) and Data Collection Endpoint (DCE)
+
+### 1. PowerShell script to create a Table in Log Analytics workspace, create a Data Collection Rule (DCR) and Data Collection Endpoint (DCE)
