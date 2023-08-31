@@ -15,3 +15,4 @@ Bruno Gabrielli created a PowerShell script to create a table in Log Analytics w
 7.  DCR Name (create yourself)
 8.  JSON Template Name (e.g. DCE-DCR-Template.json)
 
+Once the Table, DCE, and DCR are successfully created, you will need to edit the DCR and add your Azure Arc enabled servers as Resources, choosing the recently created DCE in the _Data collection endpoint_ field.
