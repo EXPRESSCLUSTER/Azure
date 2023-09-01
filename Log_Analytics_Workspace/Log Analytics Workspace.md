@@ -5,7 +5,7 @@ An EXPRESSCLUSTER project was started in early 2023 to analyze ECX log files. On
 This section includes information on scripts that can simplify the setup process.
 
 ### 1. PowerShell script to create a Table in Log Analytics workspace, a Data Collection Rule (DCR) and a Data Collection Endpoint (DCE)
-Bruno Gabrielli created a PowerShell script to create a table in Log Analytics workspace, a DCR and DCE. The scripts and an explanation on how to use them is included in his article titled [Azure Monitor: Gain Observability On Your DHCP Server](https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/azure-monitor-gain-observability-on-your-dhcp-server/ba-p/3865274). You need to create an Azure Resource Group and a Log Analytics workspace ahead of time, but the script will prompt you for other resource names. It even includes a template for an Azure Workbook, which you may or may not need. The scripts have been downloaded locally [here](Scripts/DHCP%20Custom%20Logs%20(1).zip). In order to run the scripts, you can prepare the following ahead of time:    
+Bruno Gabrielli created a PowerShell script to create a table in Log Analytics workspace, a DCR and DCE. The scripts and an explanation on how to use them is included in his article titled [Azure Monitor: Gain Observability On Your DHCP Server](https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/azure-monitor-gain-observability-on-your-dhcp-server/ba-p/3865274). You need to create an Azure Resource Group and a Log Analytics workspace ahead of time, but the script will prompt you for other resource names. It even includes a template for an Azure Workbook, which you may or may not need. The scripts have been downloaded locally [here](Scripts/DHCP%20Custom%20Logs%20(1).zip). In order to run the scripts, you will need to install the AZ Powershell module on your system and also prepare the following names ahead of time:    
 
 1.  _Subscription Id_
 2.  _Resource Group_ name (previously created)
@@ -15,4 +15,4 @@ Bruno Gabrielli created a PowerShell script to create a table in Log Analytics w
 7.  DCR Name (create yourself)
 8.  JSON Template Name (e.g. DCE-DCR-Template.json)
 
-Once the Table, DCE, and DCR are successfully created, you will need to edit the DCR and add your Azure Arc enabled servers as Resources, choosing the recently created DCE in the _Data collection endpoint_ field.
+Once the Table, DCE, and DCR are successfully created, you will need to edit the DCR from the Azure dashboard and add your Azure Arc enabled servers as Resources, choosing the recently created DCE in the _Data collection endpoint_ field.
