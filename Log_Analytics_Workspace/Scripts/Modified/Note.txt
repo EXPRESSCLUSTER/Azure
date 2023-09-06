@@ -1,1 +1,7 @@
-
+Two different .JSON files are included here for creating the DCE, DCR, and Table. The only difference is in the transform KQL query used for the Data Source of the DCR.    
+1. DCE-DCR-Template.json
+   Query: "source | where RawData contains_cs 'ERROR'"
+   Note: This query adds a filter which captures all lines which include the case-sensitive word 'ERROR'.
+2. DCE-DCR-Template source.json
+   Query: "source"
+   Note: This query will pass all of the contents of the log files to the table.
