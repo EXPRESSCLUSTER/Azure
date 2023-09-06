@@ -1,0 +1,24 @@
+{
+    "properties": {
+        "schema": {
+            "columns": [
+                {
+                    "description": "TimeGenerated",
+                    "name": "TimeGenerated",
+                    "type": "datetime"
+                },
+                {
+                    "description": "ComputerName",
+                    "name": "Computer",
+                    "type": "string"
+                },
+                {
+                    "description": "RawData",
+                    "name": "RawData",
+                    "type": "string"
+                }
+            ],
+            "name": "_tableName_"
+        }
+    }
+}
