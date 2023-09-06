@@ -5,3 +5,5 @@ Two different .JSON files are included here for creating the DCE, DCR, and Table
 2. DCE-DCR-Template source.json
    Query: "source"
    Note: This query will pass all of the contents of the log files to the table.
+
+The PowerShell script has not been changed. Although it is titled 'ConfigureDhcpIngestion.ps1', there is nothing related to DHCP since those table columns have been removed from these .json files.
