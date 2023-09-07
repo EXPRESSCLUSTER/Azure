@@ -17,4 +17,4 @@ Bruno Gabrielli created a PowerShell script to create a table in Log Analytics w
 
 Once the Table, DCE, and DCR are successfully created, you will need to edit the DCR from the Azure dashboard and add your Azure Arc enabled servers as Resources, choosing the recently created DCE in the _Data collection endpoint_ field.
 #### Modify .json files
-If you want to set your own columns for the table, you can modify the _TableSchema.json_ file, and make corresponding changes to the _DCE-DCR-Template.json_ file. The DCR  An alternate version of these configuration files which only has three columns (TimeGenerated, ComputerName, and RawData), helpful for ECX log analysis, can be found [here](Scripts/Modified).
+If you want to set your own columns for the table, you can modify the _TableSchema.json_ file, and make corresponding changes to the _DCE-DCR-Template.json_ file. The DCR data source KQL query can also be changed. An alternate version of these configuration files which only has three columns (TimeGenerated, ComputerName, and RawData), helpful for ECX log analysis, can be found [here](Scripts/Modified).
