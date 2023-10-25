@@ -1,4 +1,4 @@
-Azure Update Management
+#Azure Update Management
 One big challenge with patching operating systems where Expresscluster software is installed is making sure that updates aren’t installed on all nodes at the same time, especially if a reboot is required. One solution to this issue is manually applying the updates. A better solution is to automate the updates using a predetermined schedule, updating the OS of the primary node first, and then up to a day later, updating the OS of the standby node. Azure Update Manager provides the ability to patch a system on a preset schedule, hourly, daily, weekly, or monthly.
 Pre-requisites
 Azure VMs:  Azure Windows VM Agent is required. It is usually installed by default on most Azure VMs. Verify by opening Task Manager on the VM and search for the WindowsAzureGuestAgent.exe process.
