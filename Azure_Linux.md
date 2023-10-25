@@ -4,7 +4,7 @@ ECX is confirmed to run on Azure Linux (CBL Mariner) with some caveats.
 
 ----
 
-## Versions in the vallidation
+## Versions in the validation
 
 - EXPRESSCLUSTER X 5.1 for Linux (5.1.1-1)
 - CBL-Mariner 2.0 (2.0.20231004)
