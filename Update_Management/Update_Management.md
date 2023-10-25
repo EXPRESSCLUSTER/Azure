@@ -20,7 +20,7 @@ Non-Azure machines: _Azure Arc_.
       **Maintenance scope**: Guest (Azure VM, Arc-enabled VMs/servers)    
       **Reboot setting**: Reboot if required    
   	\<graphic here\>
-8.	Click [**Add a schedule**](https://learn.microsoft.com/en-us/azure/update-manager/scheduled-patching?tabs=schedule-updates-single-machine%2Cschedule-updates-scale-overview#prerequisites-for-scheduled-patching).
+8.	Click [**Add a schedule**](https://learn.microsoft.com/en-us/azure/update-manager/scheduled-patching?tabs=schedule-updates-single-machine%2Cschedule-updates-scale-overview#schedule-recurring-updates-on-a-single-vm).
 9.	Fill in the following:
 Start on: Desired date and time
 Time zone: Time zone of machine
