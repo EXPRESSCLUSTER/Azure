@@ -21,33 +21,33 @@ Non-Azure machines: _Azure Arc_.
       **Reboot setting**: Reboot if required    
   	\<graphic here\>
 8.	Click [**Add a schedule**](https://learn.microsoft.com/en-us/azure/update-manager/scheduled-patching?tabs=schedule-updates-single-machine%2Cschedule-updates-scale-overview#schedule-recurring-updates-on-a-single-vm).
-9.	Fill in the following:
-Start on: Desired date and time
-Time zone: Time zone of machine
-Maintenance window: Leave at the maximum of 3 Hours 55 Minutes
-(This is the time allowed for updates to be installed. If there is not enough time, some updates will not be applied. 20 minutes of this time is reserved for reboots.)
-Repeats: 2nd Tuesday of every month (patch Tuesday) with no offset
- 
-10.	Save and click Next: DynamicScopes.
-11.	Dynamic Scopes are not needed for this configuration, so click Next : Resources.
-12.	The machine selected at the beginning of this process should be the only one listed at this time. Other machines could be added to use the same schedule here or later. Click Next : Updates.
-13.	The default updates are classified as Critical and Security. Click Include update classification to include more update classifications such as Update rollups, Feature packs, Service packs, Definition updates, Tools, or Updates. Click Next : Tags.
-14.	Add and Tags that are needed and click Next : Review + Create.
-15.	If the validation passes, click Create.
-A new maintenance configuration will be created with an update schedule for the selected machine(s). This configuration can be edited from the Azure Update Manager > Machines window by clicking on Maintenance configurations.
-Confirm that the Patch orchestration is set to ‘Customer managed schedules’
-Back on the Azure Update Manager > Machines page, put a check next to the machine(s) just configured and in the upper window, click on Settings > Update settings.
- 
-A prompt will ask if you want to change update settings like patch orchestration, hotpatch option or periodic assessment for selected 1 Windows Server(s) and 0 Linux machine(s). Click Update settings to continue.
-If Patch orchestration is not set to ‘Customer Managed Schedules’, change it from the dropdown menu and Save. This is the recommended configuration setting.
- 
+9.	Fill in the following:    
+      **Start on**: Desired date and time    
+      **Time zone**: Time zone of machine    
+      **Maintenance window**: Leave at the maximum of 3 Hours 55 Minutes    
+      \(This is the time allowed for updates to be installed. If there is not enough time, some updates will not be applied. 20 minutes of this time is reserved for reboots.\)    
+      **Repeats**: 2nd Tuesday of every month (patch Tuesday) with no offset
+  	 \<graphic here\>
+ 11.	**Save** and click **Next: DynamicScopes**.
+12.	Dynamic Scopes are not needed for this configuration, so click **Next : Resources**.
+13.	The machine selected at the beginning of this process should be the only one listed at this time. Other machines could be added to use the same schedule here or later. Click **Next : Updates**.
+14.	The default updates are classified as _**Critical**_ and _**Security**_. Click **Include update classification** to include more update classifications such as _Update rollups_, _Feature packs_, _Service packs_, _Definition updates_, _Tools_, or _Updates_. Click **Next : Tags**.
+15.	Add any **Tags** that are needed and click **Next : Review + Create**.
+16.	If the validation passes, click **Create**.    
+A new maintenance configuration will be created with an update schedule for the selected machine(s). This configuration can be edited from the **Azure Update Manager > Machines** window by clicking on **Maintenance configurations** at the top of the pane.
+## Confirm that the Patch orchestration is set to ‘Customer managed schedules’
+Back on the **Azure Update Manager > Machines** page, put a check next to the machine(s) just configured, and in the upper menu, click on **Settings > Update settings**.    
+ \<graphic here\>    
+A prompt will ask if you want to change update settings like patch orchestration, hotpatch option or periodic assessment for selected 1 Windows Server(s) and 0 Linux machine(s). Click **Update settings** to continue.    
+If Patch orchestration is not set to **Customer Managed Schedules**’ change it from the dropdown menu and **Save**. This is the recommended configuration setting.    
+ \<graphic here\>    
 *Note – Patch orchestration is not applicable to Arc-enabled servers.
-Turn on periodic assessment to regularly check for updates
-Enable Periodic assessment from the same window. Change the setting from Disable to Enable and Save. This will allow update management to check for new updates every 24 hours.
- 
+## Turn on periodic assessment to regularly check for updates
+Enable **Periodic assessment** from the same window. Change the setting from **Disable** to **Enable** and **Save**. This will allow update management to check for new updates every 24 hours.    
+\<graphic here\>
 
-Additional Notes
-•	The upper maintenance window is 3 hours 55 mins.
-•	A minimum of 1 hour and 30 minutes is required for the maintenance window.
-•	Maintenance updates cannot be applied to any shut down machines. You need to ensure that your machine is turned on at least 15 minutes before a scheduled update or your update may not be applied.
+### Additional Notes
+•	The upper maintenance window is 3 hours 55 mins.    
+•	A minimum of 1 hour and 30 minutes is required for the maintenance window.    
+•	Maintenance updates cannot be applied to any shut down machines. You need to ensure that your machine is turned on at least 15 minutes before a scheduled update or your update may not be applied.    
 
