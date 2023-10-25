@@ -39,9 +39,9 @@ A new maintenance configuration will be created with an update schedule for the 
 Back on the **Azure Update Manager > Machines** page, put a check next to the machine(s) just configured, and in the upper menu, click on **Settings > Update settings**.    
  ![Update Settings](Images/Update%20Settings.png)    
 A prompt will ask if you want to change update settings like patch orchestration, hotpatch option or periodic assessment for selected 1 Windows Server(s) and 0 Linux machine(s). Click **Update settings** to continue.    
-If Patch orchestration is not set to **Customer Managed Schedules**’ change it from the dropdown menu and **Save**. This is the recommended configuration setting.    
+If Patch orchestration is not set to **Customer Managed Schedules** change it from the dropdown menu and **Save**. This is the recommended configuration setting.    
  ![Customer Managed Schedules](Images/Customer%20Managed%20Schedules.png)    
-*Note – Patch orchestration is not applicable to Arc-enabled servers.
+*Note – Patch orchestration is not applicable to Arc-enabled servers and configuration is disabled.
 ## Turn on periodic assessment to regularly check for updates
 Enable **Periodic assessment** from the same window. Change the setting from **Disable** to **Enable** and **Save**. This will allow update management to check for new updates every 24 hours.    
 ![Periodic assessment](Images/Periodic%20assessment.png)
