@@ -7,20 +7,18 @@ The _Azure VM Linux agent_ is needed for Azure Linux VMs.
 
 Non-Azure machines: _Azure Arc_.
 ## Enable Auto-updates for Azure VMs with a Maintenance Configuration
-1.	Sign into Azure.
-2.	Search for and click on Azure Update Manager.
-3.	Under Manage, click on Machines.
-All machines eligible for update management should be listed.
+1.	Sign into **Azure**.
+2.	Search for and click on **Azure Update Manager**.
+3.	Under **Manage**, click on **Machines**. All machines eligible for update management should be listed.
 4.	Check the box next to the machine(s) to be managed.
-5.	Click on Schedule Updates. A wizard should start to Create a maintenance configuration.
-6.	Fill in the fields:
-Subscription: Should be auto-populated
-Resource group: Choose the appropriate group
-Configuration name: Enter a unique name
-Region: Choose the appropriate region
-Maintenance scope: Guest (Azure VM, Arc-enabled VMs/servers)
-Reboot setting: Reboot if required
- 
+5.	Click on **Schedule Updates**. A wizard should start to **Create a maintenance configuration**.
+6.	Fill in the fields:    
+      **Subscription**: Should be auto-populated    
+      **Resource group**: Choose the appropriate group    
+      **Configuration name**: Enter a unique name    
+      **Region**: Choose the appropriate region    
+      **Maintenance scope**: Guest (Azure VM, Arc-enabled VMs/servers)    
+      **Reboot setting**: Reboot if required 
 7.	Click Add a schedule.
 8.	Fill in the following:
 Start on: Desired date and time
