@@ -18,21 +18,22 @@ Non-Azure machines: _Azure Arc_.
       **Configuration name**: Enter a unique name    
       **Region**: Choose the appropriate region    
       **Maintenance scope**: Guest (Azure VM, Arc-enabled VMs/servers)    
-      **Reboot setting**: Reboot if required 
-7.	Click Add a schedule.
-8.	Fill in the following:
+      **Reboot setting**: Reboot if required    
+  	\<graphic here\>
+8.	Click [**Add a schedule**](https://learn.microsoft.com/en-us/azure/update-manager/scheduled-patching?tabs=schedule-updates-single-machine%2Cschedule-updates-scale-overview#prerequisites-for-scheduled-patching).
+9.	Fill in the following:
 Start on: Desired date and time
 Time zone: Time zone of machine
 Maintenance window: Leave at the maximum of 3 Hours 55 Minutes
 (This is the time allowed for updates to be installed. If there is not enough time, some updates will not be applied. 20 minutes of this time is reserved for reboots.)
 Repeats: 2nd Tuesday of every month (patch Tuesday) with no offset
  
-9.	Save and click Next: DynamicScopes.
-10.	Dynamic Scopes are not needed for this configuration, so click Next : Resources.
-11.	The machine selected at the beginning of this process should be the only one listed at this time. Other machines could be added to use the same schedule here or later. Click Next : Updates.
-12.	The default updates are classified as Critical and Security. Click Include update classification to include more update classifications such as Update rollups, Feature packs, Service packs, Definition updates, Tools, or Updates. Click Next : Tags.
-13.	Add and Tags that are needed and click Next : Review + Create.
-14.	If the validation passes, click Create.
+10.	Save and click Next: DynamicScopes.
+11.	Dynamic Scopes are not needed for this configuration, so click Next : Resources.
+12.	The machine selected at the beginning of this process should be the only one listed at this time. Other machines could be added to use the same schedule here or later. Click Next : Updates.
+13.	The default updates are classified as Critical and Security. Click Include update classification to include more update classifications such as Update rollups, Feature packs, Service packs, Definition updates, Tools, or Updates. Click Next : Tags.
+14.	Add and Tags that are needed and click Next : Review + Create.
+15.	If the validation passes, click Create.
 A new maintenance configuration will be created with an update schedule for the selected machine(s). This configuration can be edited from the Azure Update Manager > Machines window by clicking on Maintenance configurations.
 Confirm that the Patch orchestration is set to ‘Customer managed schedules’
 Back on the Azure Update Manager > Machines page, put a check next to the machine(s) just configured and in the upper window, click on Settings > Update settings.
