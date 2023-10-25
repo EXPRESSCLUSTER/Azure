@@ -26,8 +26,8 @@ Non-Azure machines: _Azure Arc_.
       **Time zone**: Time zone of machine    
       **Maintenance window**: Leave at the maximum of 3 Hours 55 Minutes    
       \(This is the time allowed for updates to be installed. If there is not enough time, some updates will not be applied. 20 minutes of this time is reserved for reboots.\)    
-      **Repeats**: 2nd Tuesday of every month (patch Tuesday) with no offset
-  	 ![Maintenance Schedule](Maintenance%20Schedule.png)
+      **Repeats**: 2nd Tuesday of every month (patch Tuesday) with no offset    
+  	 ![Maintenance Schedule](Images/Maintenance%20Schedule.png)
  11.	**Save** and click **Next: DynamicScopes**.
 12.	Dynamic Scopes are not needed for this configuration, so click **Next : Resources**.
 13.	The machine selected at the beginning of this process should be the only one listed at this time. Other machines could be added to use the same schedule here or later. Click **Next : Updates**.
@@ -37,14 +37,14 @@ Non-Azure machines: _Azure Arc_.
 A new maintenance configuration will be created with an update schedule for the selected machine(s). This configuration can be edited from the **Azure Update Manager > Machines** window by clicking on **Maintenance configurations** at the top of the pane.
 ## Confirm that the Patch orchestration is set to ‘Customer managed schedules’
 Back on the **Azure Update Manager > Machines** page, put a check next to the machine(s) just configured, and in the upper menu, click on **Settings > Update settings**.    
- \<graphic here\>    
+ ![Update Settings](Images/Update%20Settings.png)    
 A prompt will ask if you want to change update settings like patch orchestration, hotpatch option or periodic assessment for selected 1 Windows Server(s) and 0 Linux machine(s). Click **Update settings** to continue.    
 If Patch orchestration is not set to **Customer Managed Schedules**’ change it from the dropdown menu and **Save**. This is the recommended configuration setting.    
- \<graphic here\>    
+ ![Customer Managed Schedules](Images/Customer%20Managed%20Schedules.png)    
 *Note – Patch orchestration is not applicable to Arc-enabled servers.
 ## Turn on periodic assessment to regularly check for updates
 Enable **Periodic assessment** from the same window. Change the setting from **Disable** to **Enable** and **Save**. This will allow update management to check for new updates every 24 hours.    
-\<graphic here\>
+![Periodic assessment](Images/Periodic%20assessment.png)
 
 ### Additional Notes
 •	The upper maintenance window is 3 hours 55 mins.    
