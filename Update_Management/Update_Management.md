@@ -27,7 +27,7 @@ Non-Azure machines: _Azure Arc_.
       **Maintenance window**: Leave at the maximum of 3 Hours 55 Minutes    
       \(This is the time allowed for updates to be installed. If there is not enough time, some updates will not be applied. 20 minutes of this time is reserved for reboots.\)    
       **Repeats**: 2nd Tuesday of every month (patch Tuesday) with no offset
-  	 \<graphic here\>
+  	 ![Maintenance Schedule](Maintenance%20Schedule.png)
  11.	**Save** and click **Next: DynamicScopes**.
 12.	Dynamic Scopes are not needed for this configuration, so click **Next : Resources**.
 13.	The machine selected at the beginning of this process should be the only one listed at this time. Other machines could be added to use the same schedule here or later. Click **Next : Updates**.
