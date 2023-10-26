@@ -3,4 +3,4 @@
 ## [Azure Migration](Azure_Migration/Azure%20Migration.md)
 ## [Hybrid Cluster (On-premises and Azure)](Hybrid_Cluster_(On-premises%20and%20Azure)/Hybrid_Cluster_(On-premises%20and%20Azure).md)
 ## [Log Analytics Workspace](Log_Analytics_Workspace/Log%20Analytics%20Workspace.md)
-## [Update Management]
+## [Update Management](Update_Management/Update_Management.md)
