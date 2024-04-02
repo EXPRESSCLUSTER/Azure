@@ -1,7 +1,7 @@
 # Making VM to be shared on Azure Compute Gallery
 
 ```ps1
-# Install Azure CLI
+# Install Azure CLI (requires Administrator right)
 $ProgressPreference = 'SilentlyContinue';Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi
 Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'
 Remove-Item .\AzureCLI.msi
