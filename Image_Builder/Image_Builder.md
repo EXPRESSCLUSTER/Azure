@@ -8,7 +8,7 @@ This guide is based off of a Microsoft article titled “[Use custom image templ
 2.	Build the image.
 3.	Create a VM from the image.
 ## Prerequisites
-1.	Required features need to be registered on the subscription.
+1.	Required features registered on the subscription
     -	Microsoft.Compute
     -	Microsoft.KeyVault
     -	Microsoft.Storage
@@ -19,27 +19,27 @@ This guide is based off of a Microsoft article titled “[Use custom image templ
 3.	Azure compute gallery and VM image definition
 4.	User assigned managed identity
 5.	New RBAC role for managed identity and other roles
-Prepare prerequisites
-1.	Register required features on the subscription
-Method 1, PowerShell
+## Prepare prerequisites
+1.	Register required features on the subscription.    
+&nbsp;  
+Method 1, **PowerShell**    
 Get-AzResourceProvider -ProviderNamespace Microsoft.Compute, Microsoft.KeyVault, Microsoft.Storage, Microsoft.VirtualMachineImages, Microsoft.Network, Microsoft.ManagedIdentity |
-  Where-Object RegistrationState -ne Registered |
-    Register-AzResourceProvider
+ Where-Object RegistrationState -ne Registered | Register-AzResourceProvider    
+&nbsp;  
+Method 2, **Azure CLI**    
+az provider register -n Microsoft.Compute    
+az provider register -n Microsoft.KeyVault    
+az provider register -n Microsoft.Storage    
+az provider register -n Microsoft.VirtualMachineImages    
+az provider register -n Microsoft.Network    
+az provider register -n Microsoft.ManagedIdentity    
 
-Method 2, Azure CLI
-az provider register -n Microsoft.Compute 
-az provider register -n Microsoft.KeyVault
-az provider register -n Microsoft.Storage
-az provider register -n Microsoft.VirtualMachineImages
-az provider register -n Microsoft.Network
-az provider register -n Microsoft.ManagedIdentity
-
-2.	Create a Resource Group using the Azure Portal (search for Resource groups)
-3.	Create an Azure compute gallery (search for Azure compute galleries)
-4.	Add a VM Image definition in the Azure compute gallery.
-5.	Create a user assigned Managed Identity using the Azure Portal (search for Managed Identities).
-*Be sure to put the Managed Identity in the same Resource Group just created and in the same Region.
-6.	Create a new RBAC role for the Managed Identity so that it can read, write, and delete images in Azure compute galleries. This needs to be done on the Resource Group.
+3.	Create a **Resource Group** using the Azure Portal (search for Resource groups).
+4.	Create an **Azure compute gallery** (search for Azure compute galleries).
+5.	Add a **VM Image definition** in the Azure compute gallery (OS type, VM generation, VM architecture, description, etc.).
+6.	Create a user assigned **Managed Identity** using the Azure Portal (search for Managed Identities).    
+\*Be sure to put the Managed Identity in the same Resource Group just created and in the same Region.
+7.	Create a new RBAC role for the Managed Identity so that it can read, write, and delete images in Azure compute galleries. This needs to be done on the Resource Group.
 a.	Open up the resource group and click on Access control (IAM)
 b.	Click Add > Add custom role
 Name: Image Contributor
