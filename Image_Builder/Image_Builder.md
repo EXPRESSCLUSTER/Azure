@@ -9,12 +9,12 @@ This guide is based off of a Microsoft article titled “[Use custom image templ
 3.	Create a VM from the image.
 ## Prerequisites
 1.	Required features need to be registered on the subscription.
-•	Microsoft.Compute
-•	Microsoft.KeyVault
-•	Microsoft.Storage
-•	Microsoft.Network
-•	Microsoft.VirtualMachineImages
-•	Microsoft.ManagedIdentity
+    -	Microsoft.Compute
+    -	Microsoft.KeyVault
+    -	Microsoft.Storage
+    -	Microsoft.Network
+    -	Microsoft.VirtualMachineImages
+    -	Microsoft.ManagedIdentity
 2.	Resource Group
 3.	Azure compute gallery and VM image definition
 4.	User assigned managed identity
