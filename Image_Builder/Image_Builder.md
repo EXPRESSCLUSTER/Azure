@@ -1,4 +1,6 @@
-==Under Construction==:construction: :bowtie:
+<h1 align="center">
+==Under Construction==
+</h1>
 
 # Azure VM Image Builder\Image Templates
 Azure Image templates create a pipeline that fully automates the building of a custom VM image with ExpressCluster installed. The image can be distributed directly to an Azure Compute Gallery, ready for publishing to the Azure Marketplace. You can use ARM JSON templates for a command line experience (Azure VM Image Builder) or use the Azure Portal option (Image templates) for a GUI experience.
