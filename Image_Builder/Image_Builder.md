@@ -34,27 +34,28 @@ az provider register -n Microsoft.VirtualMachineImages
 az provider register -n Microsoft.Network    
 az provider register -n Microsoft.ManagedIdentity    
 
-3.	Create a **Resource Group** using the Azure Portal (search for Resource groups).
-4.	Create an **Azure compute gallery** (search for Azure compute galleries).
-5.	Add a **VM Image definition** in the Azure compute gallery (OS type, VM generation, VM architecture, description, etc.).
-6.	Create a user assigned **Managed Identity** using the Azure Portal (search for Managed Identities).    
+2.	Create a **Resource Group** using the Azure Portal (search for Resource groups).
+3.	Create an **Azure compute gallery** (search for Azure compute galleries).
+4.	Add a **VM Image definition** in the Azure compute gallery (OS type, VM generation, VM architecture, description, etc.).
+5.	Create a user assigned **Managed Identity** using the Azure Portal (search for Managed Identities).    
 \*Be sure to put the Managed Identity in the same Resource Group just created and in the same Region.
-7.	Create a new RBAC role for the Managed Identity so that it can read, write, and delete images in Azure compute galleries. This needs to be done on the Resource Group.
-a.	Open up the resource group and click on Access control (IAM)
-b.	Click Add > Add custom role
-Name: Image Contributor
-Description: Allows to read, write, and delete images in Azure Shared Image Gallery
-Baseline permissions: Start from scratch
-Click Next
-c.	Add permissions
-Search: Compute galleries, click Microsoft Compute
-Select: Read: Get Gallery, Read: Get Gallery Image,  Read: Get Gallery Image Version
-Click Add
-Click Add permissions
-Search: Compute galleries image versions, click Microsoft Compute
-Select: Write: Create or Update Gallery Image Version
-Add
-Addpermissions
+6.	Create a new RBAC role for the Managed Identity so that it can read, write, and delete images in Azure compute galleries. This needs to be done on the Resource Group.    
+&nbsp;  
+6.1	Open up the resource group and click on **Access control (IAM)**    
+6.2	Click **Add > Add custom role**    
+&emsp;&ensp;**Name**: _Image Contributor_    
+&emsp;&ensp;**Description**: _Allows to read, write, and delete images in Azure Shared Image Gallery_    
+&emsp;&ensp;**Baseline permissions**: _Start from scratch_    
+&emsp;&ensp;Click **Next**.    
+6.3	**Add permissions**    
+&emsp;&ensp;**Search**: _Compute galleries_, click **Microsoft Compute**    
+&emsp;&ensp;**Select**: _Read: Get Gallery_, _Read: Get Gallery Image_,  _Read: Get Gallery Image Version_    
+&emsp;&ensp;Click **Add**    
+&emsp;&ensp;Click **Add permissions**    
+&emsp;&ensp;**Search**: _Compute galleries image versions_, click **Microsoft Compute**    
+&emsp;&ensp;**Select**: _Write: Create or Update Gallery Image Version_    
+&emsp;&ensp;**Add**    
+Add permissions
 Search: Compute images, click Microsoft Compute (Microsoft.compute/images)
 Select: Read: Get Image, Write: Create or Update Image, Delete: Delete Image
 Click Add
