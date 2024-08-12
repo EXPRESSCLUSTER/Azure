@@ -151,6 +151,6 @@ What the script does:
 5.	Registers license files (which should already have been copied to the temporary folder).
 6.	Runs code to check if the licenses are registered and ports are open.
 7.	Deletes the temporary folder. This line can be commented out to aid in troubleshooting.
-Why not use the File customizer to download the ExpressCluster installation script, since it is less than 20 MB?
-If it was the only file that I needed, I might. It is just easier to download all of the files I need in one code segment instead of adding a File customizer for each file.
+### Why not use the _File customizer_ to download the ExpressCluster installation script, since it is less than 20 MB?
+If it was the only file that I needed, I might. It is just easier to download all of the files I need in one code segment instead of adding a **File customizer** for each file.
 
