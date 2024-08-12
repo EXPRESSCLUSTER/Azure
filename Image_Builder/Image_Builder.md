@@ -119,7 +119,7 @@ powershell -executionpolicy bypass -File .\install-ecx.ps1 ecx52w_x64.zip c:\$pa
 11.	**Add** a **Validator**, if needed, and click **Next : Tags**.
 12.	**Add** any **Tags** to categorize resources as needed and click **Review + create**.
 13.	Click **Create**.
-14.	Once the Image template has been created, change to the Image template overview page and click **Start build** to launch the VM creation process. This may take awhile to complete.
+14.	Once the Image template has been created, change to the Image template overview page and click **Start build** to launch the VM creation process. This may take a while to complete.
 The new VM image will be created in your Azure compute gallery.
 
 ## Addendum
