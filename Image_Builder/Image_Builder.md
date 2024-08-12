@@ -70,24 +70,26 @@ az provider register -n Microsoft.ManagedIdentity
 &emsp;&ensp;Click **Select**    
 &emsp;&ensp;Click **Review + create**    
 &emsp;&ensp;Click **Create**    
+&nbsp;  
 It may be necessary to copy private files, which are needed for software installation, to an image while it is being built. Creating a blob container to house these files in an Azure storage account is a good option If you want to securely access private files during the Customizations phase of the image template. This could be useful for copying license files to a VM from a storage account with a ‘Run a powershell command’ customizer. A script could also be called from a storage account with a ‘Run a powershell script’ command. Anonymous access does not need to be enabled to access these files. These files could also be accessed from a publicly available location, such as GitHub, or a web service.
-Additional Roles
-•	Managed Identity Operator & Virtual Machine Contributor - needed to assign a user-assigned identity to a VM so that it can access Azure resources such as storage blob containers. These roles need to be added in the resource group IAM.
-•	Storage Blob Data Reader - needed to access Azure Storage blob container and data. This role needs to be assigned to the managed identity from the storage blob container IAM.
-Create an Image Template
-1.	Search for and click on Image templates.
-2.	Click Create.
-3.	Most settings on the Basics tab are specific to your environment or preferences. Below are settings that I chose for this template:
-Source image: Marketplace
-Image: Windows Server 2019 Datacenter – Gen2
-Distribution targets: VM image version
-Managed identity: the identity created earlier
-4.	Click Next : Customizations
-5.	Below are the settings I chose for the Customizations tab:
-Build VM managed identity: the identity created earlier
-6.	Click Add under Customize with scripts to configure VM installation options.
-Customizer: Run a powershell command
-Inline command: 
+&nbsp;  
+## Additional Roles Needed
+- **Managed Identity Operator** & **Virtual Machine Contributor** - needed to assign a user-assigned identity to a VM so that it can access Azure resources such as storage blob containers. These roles need to be added in the resource group IAM.    
+- **Storage Blob Data Reader** - needed to access Azure Storage blob container and data. This role needs to be assigned to the managed identity from the storage blob container IAM.
+## Create an Image Template
+1.	Search for and click on **Image templates**.
+2.	Click **Create**.
+3.	Most settings on the Basics tab are specific to your environment or preferences. Below are settings that I chose for this template:    
+**Source image**: Marketplace    
+**Image**: Windows Server 2019 Datacenter – Gen2    
+**Distribution targets**: VM image version    
+**Managed identity**: the identity created earlier
+4.	Click **Next : Customizations**
+5.	Below are the settings I chose for the Customizations tab:   
+**Build VM managed identity**: select the identity created earlier
+6.	Under **Customize with scripts**, click **Add** to configure VM installation options.
+**Customizer**: _Run a powershell command_
+**Inline command**: 
 $path_temp = 'temp-ecx'
 New-Item -Type Directory -Path  'c:\\' -Name $path_temp
 invoke-webrequest -uri 'https://aka.ms/downloadazcopy-v10-windows' -OutFile c:\\$path_temp\\azcopy.zip
