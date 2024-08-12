@@ -88,8 +88,9 @@ It may be necessary to copy private files, which are needed for software install
 5.	Below are the settings I chose for the Customizations tab:   
 **Build VM managed identity**: select the identity created earlier
 6.	Under **Customize with scripts**, click **Add** to configure VM installation options.
-**Customizer**: _Run a powershell command_
-**Inline command**: 
+**Customizer**: _Run a powershell command_    
+**Inline command**:
+```
 $path_temp = 'temp-ecx'
 New-Item -Type Directory -Path  'c:\\' -Name $path_temp
 invoke-webrequest -uri 'https://aka.ms/downloadazcopy-v10-windows' -OutFile c:\\$path_temp\\azcopy.zip
@@ -102,25 +103,25 @@ cd c:\\$path_temp
 .\azcopy copy 'https:// <storage name>.blob.core.windows.net/<blob container name>/X5x_REPL.key' C:\\$path_temp\\X5x_REPL.key
 .\azcopy copy 'https:// <storage name>.blob.core.windows.net/<blob container name>/install-ecx.ps1' C:\\$path_temp\\install-ecx.ps1
 powershell -executionpolicy bypass -File .\install-ecx.ps1 ecx52w_x64.zip c:\$path_temp
-
-Permissions: Run as elevated
-*Note – this code will do the following:
-•	create a temporary directory on the VM
-•	download azcopy from the web and login to your Azure account
-•	download ExpressCluster license files and installation script from Azure storage
-•	run the ExpressCluster installation script with the installation zip file name (e.g.  ecx52w_x64.zip) and temporary directory as parameters.
-7.	Click OK to add this Customizer.
-8.	Click Add to add another customization option.
-9.	Customizer: Perform Windows restart
-10.	Click OK to add this Customizer.
-11.	Click Next : Validations
-12.	Add a Validator, if needed, and click Next : Tags.
-13.	Add any Tags to categorize resources as needed and click Review + create.
-14.	Click Create.
-15.	Once the Image template has been created, change to the Image template overview page and click Start build to launch the VM creation process. This may take awhile to complete.
+```
+&emsp;&ensp;**Permissions**: Run as elevated    
+&emsp;&ensp;*Note – this code will do the following:    
+   - create a temporary directory on the VM    
+   - download azcopy from the web and login to your Azure account    
+   - download ExpressCluster license files and installation script from Azure storage    
+   - run the ExpressCluster installation script with the installation zip file name (e.g.  ecx52w_x64.zip) and temporary directory as parameters.    
+7.	Click **OK** to add this **Customizer**.
+8.	Click **Add** to add another customization option.    
+	**Customizer**: Perform Windows restart
+9.	Click **OK** to add this Customizer.
+10.	Click **Next : Validations**
+11.	**Add** a **Validator**, if needed, and click **Next : Tags**.
+12.	**Add** any **Tags** to categorize resources as needed and click **Review + create**.
+13.	Click **Create**.
+14.	Once the Image template has been created, change to the Image template overview page and click **Start build** to launch the VM creation process. This may take awhile to complete.
 The new VM image will be created in your Azure compute gallery.
 
-Addendum
+## Addendum
 Use SAS tokens to access Azure storage blob files
 If you would prefer to use SAS tokens to access the files to be copied during VM creation, the code is here:
 $path_temp = 'temp-ecx'
