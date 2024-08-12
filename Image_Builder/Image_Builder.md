@@ -105,11 +105,12 @@ cd c:\\$path_temp
 powershell -executionpolicy bypass -File .\install-ecx.ps1 ecx52w_x64.zip c:\$path_temp
 ```
 &emsp;&ensp;**Permissions**: Run as elevated    
+&nbsp;  
 &emsp;&ensp;*Note – this code will do the following:    
-   + Create a temporary directory on the VM    
-   + Download azcopy from the web and login to your Azure account    
-   + Download ExpressCluster license files and installation script from Azure storage    
-   + Run the ExpressCluster installation script with the installation zip file name (e.g.  ecx52w_x64.zip) and temporary directory as parameters.    
+   - Create a temporary directory on the VM    
+   - Download _azcopy_ from the web and login to your Azure account    
+   - Download ExpressCluster license files and installation script from Azure storage    
+   - Run the ExpressCluster installation script with the installation zip file name (e.g.  ecx52w_x64.zip) and temporary directory as parameters.    
 7.	Click **OK** to add this **Customizer**.
 8.	Click **Add** to add another customization option.    
 	**Customizer**: Perform Windows restart
