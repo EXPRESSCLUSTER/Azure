@@ -106,10 +106,10 @@ powershell -executionpolicy bypass -File .\install-ecx.ps1 ecx52w_x64.zip c:\$pa
 ```
 &emsp;&ensp;**Permissions**: Run as elevated    
 &emsp;&ensp;*Note – this code will do the following:    
-   - create a temporary directory on the VM    
-   - download azcopy from the web and login to your Azure account    
-   - download ExpressCluster license files and installation script from Azure storage    
-   - run the ExpressCluster installation script with the installation zip file name (e.g.  ecx52w_x64.zip) and temporary directory as parameters.    
+   + Create a temporary directory on the VM    
+   + Download azcopy from the web and login to your Azure account    
+   + Download ExpressCluster license files and installation script from Azure storage    
+   + Run the ExpressCluster installation script with the installation zip file name (e.g.  ecx52w_x64.zip) and temporary directory as parameters.    
 7.	Click **OK** to add this **Customizer**.
 8.	Click **Add** to add another customization option.    
 	**Customizer**: Perform Windows restart
@@ -122,8 +122,9 @@ powershell -executionpolicy bypass -File .\install-ecx.ps1 ecx52w_x64.zip c:\$pa
 The new VM image will be created in your Azure compute gallery.
 
 ## Addendum
-Use SAS tokens to access Azure storage blob files
-If you would prefer to use SAS tokens to access the files to be copied during VM creation, the code is here:
+### Use SAS tokens to access Azure storage blob files
+If you would prefer to use SAS tokens to access the files to be copied during VM creation, the code is here:    
+```
 $path_temp = 'temp-ecx'
 New-Item -Type Directory -Path  'c:\\' -Name $path_temp
 invoke-webrequest -uri 'https:// <storage name>.blob.core.windows.net/<blob container name>/X5x_ALRT.key?<SAS token>' -OutFile c:\\$path_temp\\X5x_ALRT.key
@@ -132,15 +133,16 @@ invoke-webrequest -uri 'https:// <storage name>.blob.core.windows.net/<blob cont
 invoke-webrequest -uri 'https:// <storage name>.blob.core.windows.net/<blob container name>/install-ecx.ps1? <SAS token>' -OutFile c:\\$path_temp\\install-ecx.ps1
 cd c:\\$path_temp
 powershell -executionpolicy bypass -File .\install-ecx.ps1 ecx52w_x64.zip c:\$path_temp
-Why not use the Run a powershell script customizer to execute the script file from the storage blob?
+```
+### Why not use the Run a powershell script customizer to execute the script file from the storage blob?
 I couldn’t figure out a way to pass arguments to the script with this method.
-Need to troubleshoot?
-If you need to troubleshoot the creation of the VM from the Image template, find the Resource Group which includes the name of the Resource Group the VM was created under plus the Image template name (IT_<resource group created under>_<Image template name>_<long string>). There is a storage account which contains a Container blob named packerlogs with a folder which has a log file called customization.log.
-Image template distribution target options
-The distribution target can be a VM image version (which will be sent to an Azure Compute Gallery), a Managed Image (which will be saved in a resource group), or a Storage Blob VHD (which will be created in a Storage Account inside the staging Resource Group that's automatically created by Azure VM Image Builder). One or more of these can be selected.
-No longer need the Image template?
-If you no longer need the Image template , delete it. This will also remove the temporary resource group (IT_<resource group created under>_<Image template name>_<long string>), the storage account, and log file.
-ExpressCluster automated installation script
+### Need to troubleshoot?
+If you need to troubleshoot the creation of the VM from the Image template, find the **Resource Group** which includes the name of the Resource Group the VM was created under plus the Image template name \(e.g. IT_\<resource group created under\>_\<Image template name\>_\<long string\>\). There is a storage account under this resource group which contains a **Container blob** named _packerlogs_ with a folder which has a log file called _customization.log_.
+### Image template distribution target options
+The distribution target can be a **VM image version** (which will be sent to an Azure Compute Gallery), a **Managed image** (which will be saved in a resource group), or a **Storage Blob VHD** \(which will be created in a Storage Account inside the staging Resource Group that's automatically created by Azure VM Image Builder\). One or more of these options can be selected.
+### No longer need the Image template?
+If you no longer need the Image template , delete it. This will also remove the temporary resource group \(IT_\<resource group created under\>_\<Image template name\>_\<long string\>\), the storage account, and log file.
+### ExpressCluster automated installation script
 What the script does:
 1.	Creates a temporary folder (if not already created).
 2.	Downloads and unzips the designated ExpressCluster installation zip file from the ExpressCluster website.
