@@ -58,8 +58,8 @@ az provider register -n Microsoft.ManagedIdentity
 &emsp;&ensp;**Select**: _Write: Create or Update Gallery Image Version_    
 &emsp;&ensp;Click **Add**    
 &emsp;&ensp;Click **Add permissions**    
-&emsp;&ensp;**Search**: Compute images, click Microsoft Compute (Microsoft.compute/images)    
-&emsp;&ensp;**Select**: Read: Get Image, Write: Create or Update Image, Delete: Delete Image    
+&emsp;&ensp;**Search**: _Compute images, click Microsoft Compute (Microsoft.compute/images)_    
+&emsp;&ensp;**Select**: _Read: Get Image, Write: Create or Update Image, Delete: Delete Image_    
 &emsp;&ensp;Click **Add**    
 &emsp;&ensp;Click **Next**    
 &emsp;&ensp;**Assignable scopes** tab    
@@ -71,7 +71,7 @@ az provider register -n Microsoft.ManagedIdentity
 &emsp;&ensp;Click **Review + create**    
 &emsp;&ensp;Click **Create**    
 &nbsp;  
-It may be necessary to copy private files, which are needed for software installation, to an image while it is being built. Creating a blob container to house these files in an Azure storage account is a good option If you want to securely access private files during the Customizations phase of the image template. This could be useful for copying license files to a VM from a storage account with a ‘Run a powershell command’ customizer. A script could also be called from a storage account with a ‘Run a powershell script’ command. Anonymous access does not need to be enabled to access these files. These files could also be accessed from a publicly available location, such as GitHub, or a web service.
+It may be necessary to copy private files, which are needed for software installation, to an image while it is being built. Creating a blob container to house these files in an Azure storage account is a good option if you want to securely access private files during the _Customizations_ phase of the image template. This could be useful for copying license files to a VM from a storage account with a ‘Run a powershell command’ customizer. A script could also be called from a storage account with a ‘Run a powershell script’ command. Anonymous access does not need to be enabled to access these files. These files could also be accessed from a publicly available location, such as GitHub, or a web service.
 &nbsp;  
 ## Additional Roles Needed
 - **Managed Identity Operator** & **Virtual Machine Contributor** - needed to assign a user-assigned identity to a VM so that it can access Azure resources such as storage blob containers. These roles need to be added in the resource group IAM.    
