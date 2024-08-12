@@ -49,15 +49,15 @@ az provider register -n Microsoft.ManagedIdentity
 &emsp;&ensp;**Description**: _Allows to read, write, and delete images in Azure Shared Image Gallery_    
 &emsp;&ensp;**Baseline permissions**: _Start from scratch_    
 &emsp;&ensp;Click **Next**.    
-6.3	**Add permissions**    
+6.3	Click **Add permissions**    
 &emsp;&ensp;**Search**: _Compute galleries_, click **Microsoft Compute**    
 &emsp;&ensp;**Select**: _Read: Get Gallery_, _Read: Get Gallery Image_,  _Read: Get Gallery Image Version_    
 &emsp;&ensp;Click **Add**    
 &emsp;&ensp;Click **Add permissions**    
 &emsp;&ensp;**Search**: _Compute galleries image versions_, click **Microsoft Compute**    
 &emsp;&ensp;**Select**: _Write: Create or Update Gallery Image Version_    
-&emsp;&ensp;**Add**    
-Add permissions
+&emsp;&ensp;Click **Add**    
+Click **Add permissions**
 Search: Compute images, click Microsoft Compute (Microsoft.compute/images)
 Select: Read: Get Image, Write: Create or Update Image, Delete: Delete Image
 Click Add
@@ -67,6 +67,7 @@ If the Subscription is listed, delete it since this only needs to be at the reso
 If the Resource group is not listed, Click Add assignable scopes
 Type: Resource group
 Select: this resource group
+Click Select
 Click Review + create
 Click Create
 It may be necessary to copy private files, which are needed for software installation, to an image while it is being built. Creating a blob container to house these files in an Azure storage account is a good option If you want to securely access private files during the Customizations phase of the image template. This could be useful for copying license files to a VM from a storage account with a ‘Run a powershell command’ customizer. A script could also be called from a storage account with a ‘Run a powershell script’ command. Anonymous access does not need to be enabled to access these files. These files could also be accessed from a publicly available location, such as GitHub, or a web service.
