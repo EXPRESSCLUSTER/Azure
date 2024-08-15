@@ -134,6 +134,9 @@ invoke-webrequest -uri 'https:// <storage name>.blob.core.windows.net/<blob cont
 invoke-webrequest -uri 'https:// <storage name>.blob.core.windows.net/<blob container name>/install-ecx.ps1? <SAS token>' -OutFile c:\\$path_temp\\install-ecx.ps1
 cd c:\\$path_temp
 powershell -executionpolicy bypass -File .\install-ecx.ps1 ecx52w_x64.zip c:\$path_temp
+cd c:\\
+#Remove temporary folder - do not include this next line if troubleshooting
+Remove-Item -Path $path_temp -Recurse -Force
 ```
 ### Why not use the Run a powershell script customizer to execute the script file from the storage blob?
 I couldn’t figure out a way to pass arguments to the script with this method.
