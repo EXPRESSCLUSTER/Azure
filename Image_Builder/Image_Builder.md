@@ -103,6 +103,9 @@ cd c:\\$path_temp
 .\azcopy copy 'https:// <storage name>.blob.core.windows.net/<blob container name>/X5x_REPL.key' C:\\$path_temp\\X5x_REPL.key
 .\azcopy copy 'https:// <storage name>.blob.core.windows.net/<blob container name>/install-ecx.ps1' C:\\$path_temp\\install-ecx.ps1
 powershell -executionpolicy bypass -File .\install-ecx.ps1 ecx52w_x64.zip c:\$path_temp
+cd c:\\
+#Remove temporary folder - do not include this next line if troubleshooting
+Remove-Item -Path $path_temp -Recurse -Force
 ```
 &emsp;&ensp;**Permissions**: Run as elevated    
 &nbsp;  
