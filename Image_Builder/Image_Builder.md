@@ -21,7 +21,7 @@ This guide is based off of a Microsoft article titled “[Use custom image templ
 3.	Azure compute gallery and VM image definition
 4.	User assigned managed identity
 5.	New RBAC role for managed identity and other roles
-6.	Upload ExpressCluster license files and [installation script](Scripts/install-ecx.ps1) to an Azure storage blob
+6.	ExpressCluster license files and [installation script](Scripts/install-ecx.ps1)
 ## Prepare prerequisites
 1.	Register required features on the subscription.    
 &nbsp;  
@@ -71,6 +71,7 @@ az provider register -n Microsoft.ManagedIdentity
 &emsp;&ensp;Click **Select**    
 &emsp;&ensp;Click **Review + create**    
 &emsp;&ensp;Click **Create**    
+7. Copy ExpressCluster license files and installation script to an Azure storage blob. Copy the links to these files to be used later.    
 &nbsp;  
 It may be necessary to copy private files, which are needed for software installation, to an image while it is being built. Creating a blob container to house these files in an Azure storage account is a good option if you want to securely access private files during the _Customizations_ phase of the image template. This could be useful for copying license files to a VM from a storage account with a ‘Run a powershell command’ customizer. A script could also be called from a storage account with a ‘Run a powershell script’ command. Anonymous access does not need to be enabled to access these files. These files could also be accessed from a publicly available location, such as GitHub, or a web service.
 &nbsp;  
