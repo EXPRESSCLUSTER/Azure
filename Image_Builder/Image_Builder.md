@@ -21,6 +21,7 @@ This guide is based off of a Microsoft article titled “[Use custom image templ
 3.	Azure compute gallery and VM image definition
 4.	User assigned managed identity
 5.	New RBAC role for managed identity and other roles
+6.	Upload ExpressCluster license files and [installation script](Scripts/install-ecx.ps1) to an Azure storage blob
 ## Prepare prerequisites
 1.	Register required features on the subscription.    
 &nbsp;  
