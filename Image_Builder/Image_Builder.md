@@ -94,6 +94,7 @@ It may be necessary to copy private files, which are needed for software install
 **Inline command**:
 ```powershell
 $path_temp = 'temp-ecx'
+$ecxzip = 'ecx52w_x64.zip'
 New-Item -Type Directory -Path  'c:\\' -Name $path_temp
 invoke-webrequest -uri 'https://aka.ms/downloadazcopy-v10-windows' -OutFile c:\\$path_temp\\azcopy.zip
 Expand-Archive c:\\$path_temp\\azcopy.zip c:\\$path_temp
@@ -104,7 +105,7 @@ cd c:\\$path_temp
 .\azcopy copy 'https:// <storage name>.blob.core.windows.net/<blob container name>/X5x_Base.key' C:\\$path_temp\\X5x_Base.key
 .\azcopy copy 'https:// <storage name>.blob.core.windows.net/<blob container name>/X5x_REPL.key' C:\\$path_temp\\X5x_REPL.key
 .\azcopy copy 'https:// <storage name>.blob.core.windows.net/<blob container name>/install-ecx.ps1' C:\\$path_temp\\install-ecx.ps1
-powershell -executionpolicy bypass -File .\install-ecx.ps1 ecx52w_x64.zip c:\$path_temp
+powershell -executionpolicy bypass -File .\install-ecx.ps1 $ecxzip c:\$path_temp
 cd c:\\
 #Remove temporary folder - do not include this next line if troubleshooting
 Remove-Item -Path $path_temp -Recurse -Force
@@ -132,13 +133,14 @@ The new VM image will be created in your Azure compute gallery.
 If you would prefer to use SAS tokens to access the files to be copied during VM creation, the code is here:    
 ```powershell
 $path_temp = 'temp-ecx'
+$ecxzip = 'ecx52w_x64.zip'
 New-Item -Type Directory -Path  'c:\\' -Name $path_temp
 invoke-webrequest -uri 'https://<storage name>.blob.core.windows.net/<blob container name>/X5x_ALRT.key?<SAS token>' -OutFile c:\\$path_temp\\X5x_ALRT.key
 invoke-webrequest -uri 'https://<storage name>.blob.core.windows.net/<blob container name>/X5x_Base.key? <SAS token>' -OutFile c:\\$path_temp\\X5x_Base.key
 invoke-webrequest -uri 'https://<storage name>.blob.core.windows.net/<blob container name>/X5x_REPL.key? <SAS token>' -OutFile c:\\$path_temp\\X5x_REPL.key
 invoke-webrequest -uri 'https://<storage name>.blob.core.windows.net/<blob container name>/install-ecx.ps1? <SAS token>' -OutFile c:\\$path_temp\\install-ecx.ps1
 cd c:\\$path_temp
-powershell -executionpolicy bypass -File .\install-ecx.ps1 ecx52w_x64.zip c:\$path_temp
+powershell -executionpolicy bypass -File .\install-ecx.ps1 $ecxzip c:\$path_temp
 cd c:\\
 #Remove temporary folder - do not include this next line if troubleshooting
 Remove-Item -Path $path_temp -Recurse -Force
