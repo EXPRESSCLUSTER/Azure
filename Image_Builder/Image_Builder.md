@@ -92,7 +92,7 @@ It may be necessary to copy private files, which are needed for software install
 6.	Under **Customize with scripts**, click **Add** to configure VM installation options.
 **Customizer**: _Run a powershell command_    
 **Inline command**:
-```
+```powershell
 $path_temp = 'temp-ecx'
 New-Item -Type Directory -Path  'c:\\' -Name $path_temp
 invoke-webrequest -uri 'https://aka.ms/downloadazcopy-v10-windows' -OutFile c:\\$path_temp\\azcopy.zip
@@ -130,7 +130,7 @@ The new VM image will be created in your Azure compute gallery.
 ## Addendum
 ### Use SAS tokens to access Azure storage blob files
 If you would prefer to use SAS tokens to access the files to be copied during VM creation, the code is here:    
-```
+```powershell
 $path_temp = 'temp-ecx'
 New-Item -Type Directory -Path  'c:\\' -Name $path_temp
 invoke-webrequest -uri 'https://<storage name>.blob.core.windows.net/<blob container name>/X5x_ALRT.key?<SAS token>' -OutFile c:\\$path_temp\\X5x_ALRT.key
@@ -165,7 +165,7 @@ If it was the only file that I needed, I might. It is just easier to download al
 ### Linux bash scripts
 Bash code to dowload license files from Azure blob storage using azcopy, download and install ExpressCluster from the NEC ExpressCluster website, and register license files is included below for both Red Hat Linux and Ubuntu Linux.
 #### Red Hat script
-```
+```bash
 instdir=/tmp/ecxinstall
 mkdir $instdir
 wget -O $instdir/azcopy_v10.tar.gz https://aka.ms/downloadazcopy-v10-linux
@@ -186,11 +186,10 @@ sudo clpfwctrl.sh --add
 sudo sed -i -e 's/^SELINUX=.*/SELINUX=disabled/' /etc/selinux/config
 # Disable caching of repositories
 sudo systemctl disable dnf-makecache.timer
-
 rm -rfv $instdir/
 ```
-\*Note that Red Hat seems to have firewall-d enabled by default. If not, add the following code to check for it and install if missing    
-```
+\*Note that Red Hat seems to have firewall-d enabled by default. If not, add the following code to check for it and install if missing.    
+```bash
 FW=firewall-cmd
 which $FW > /dev/null 2>&1
 if [ $? -ne 0 ]; then
@@ -207,8 +206,20 @@ else
   echo "Open ports"
 fi
 ```
-#### Ubuntu script
+Validate installation and configuration if desired.
+```bash
+echo "ExpressCluster licenses"
+sudo clplcnsc -l | grep -i 'cluster'
+echo "SELINUX state"
+sudo cat /etc/selinux/config | grep 'SELINUX='
+uname -a
+echo "Firewall state"
+sudo firewall-cmd --state
+echo "Open ports"
+sudo firewall-cmd --info-service=clusterpro | grep 'ports'
 ```
+#### Ubuntu script
+```bash
 instdir=/tmp/ecxinstall,
 mkdir $instdir,
 wget -O $instdir/azcopy_v10.tar.gz https://aka.ms/downloadazcopy-v10-linux,
