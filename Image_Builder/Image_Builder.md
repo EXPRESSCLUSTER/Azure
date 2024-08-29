@@ -133,10 +133,10 @@ If you would prefer to use SAS tokens to access the files to be copied during VM
 ```
 $path_temp = 'temp-ecx'
 New-Item -Type Directory -Path  'c:\\' -Name $path_temp
-invoke-webrequest -uri 'https:// <storage name>.blob.core.windows.net/<blob container name>/X5x_ALRT.key?<SAS token>' -OutFile c:\\$path_temp\\X5x_ALRT.key
-invoke-webrequest -uri 'https:// <storage name>.blob.core.windows.net/<blob container name>/X5x_Base.key? <SAS token>' -OutFile c:\\$path_temp\\X5x_Base.key
-invoke-webrequest -uri 'https:// <storage name>.blob.core.windows.net/<blob container name>/X5x_REPL.key? <SAS token>' -OutFile c:\\$path_temp\\X5x_REPL.key
-invoke-webrequest -uri 'https:// <storage name>.blob.core.windows.net/<blob container name>/install-ecx.ps1? <SAS token>' -OutFile c:\\$path_temp\\install-ecx.ps1
+invoke-webrequest -uri 'https://<storage name>.blob.core.windows.net/<blob container name>/X5x_ALRT.key?<SAS token>' -OutFile c:\\$path_temp\\X5x_ALRT.key
+invoke-webrequest -uri 'https://<storage name>.blob.core.windows.net/<blob container name>/X5x_Base.key? <SAS token>' -OutFile c:\\$path_temp\\X5x_Base.key
+invoke-webrequest -uri 'https://<storage name>.blob.core.windows.net/<blob container name>/X5x_REPL.key? <SAS token>' -OutFile c:\\$path_temp\\X5x_REPL.key
+invoke-webrequest -uri 'https://<storage name>.blob.core.windows.net/<blob container name>/install-ecx.ps1? <SAS token>' -OutFile c:\\$path_temp\\install-ecx.ps1
 cd c:\\$path_temp
 powershell -executionpolicy bypass -File .\install-ecx.ps1 ecx52w_x64.zip c:\$path_temp
 cd c:\\
@@ -162,4 +162,65 @@ What the script does:
 7.	Deletes the temporary folder. This line can be commented out to aid in troubleshooting.
 ### Why not use the _File customizer_ to download the ExpressCluster installation script, since it is less than 20 MB?
 If it was the only file that I needed, I might. It is just easier to download all of the files I need in one code segment instead of adding a **File customizer** for each file.
+### Linux bash script
+Bash code to dowload license files from Azure blob storage using azcopy, download and install ExpressCluster from the NEC ExpressCluster website, and register license files is included below for both Red Hat Linux and Ubuntu Linux.
+#### Red Hat script
+```
+instdir=/tmp/ecxinstall
+mkdir $instdir
+wget -O $instdir/azcopy_v10.tar.gz https://aka.ms/downloadazcopy-v10-linux
+tar -xvzf $instdir/azcopy_v10.tar.gz -C $instdir/ --strip-components=1
+$instdir/azcopy login --login-type=MSI
+$instdir/azcopy copy 'https://<storage name>.blob.core.windows.net/<blob container name>/X5_Alrt_Lin.key' $instdir
+$instdir/azcopy copy 'https://<storage name>.blob.core.windows.net/<blob container name>/X5_Base_Lin.key' $instdir
+$instdir/azcopy copy 'https://<storage name>.blob.core.windows.net/<blob container name>/X5_Repl_Lin.key' $instdir
+curl -A '' -o $instdir/ecx5.zip  https://www.nec.com/en/global/prod/expresscluster/en/trial/zip/ecx52l_x64.zip
+unzip $instdir/ecx5.zip -d $instdir
+name=$(find $instdir/ -name "*.rpm" )
+sudo rpm -i $name
+sudo clplcnsc -i $instdir/*.key
+# Check fireall
+# Open ports through firewall
+sudo clpfwctrl.sh --add
+# Disable SELinux
+sudo sed -i -e 's/^SELINUX=.*/SELINUX=disabled/' /etc/selinux/config
+# Disable caching of repositories
+sudo systemctl disable dnf-makecache.timer
 
+rm -rfv $instdir/
+```
+\*Note that Red Hat seems to have firewall-d enabled by default. If not, add the following code to check for it and install if missing    
+```
+FW=firewall-cmd
+which $FW > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+  echo "'$FW' is not installed"
+  #exit ${FWCTRL_ERR_CMDNOTFOUND}
+  echo "Installing firewalld"
+  sudo yum -y install firewalld
+  sudo systemctl start firewalld
+  sudo firewall-cmd --state
+  sudo systemctl enable firewalld
+  echo "Open ports"
+else
+  echo "'$FW' is installed."
+  echo "Open ports"
+fi
+```
+#### Ubuntu script
+```
+instdir=/tmp/ecxinstall,
+mkdir $instdir,
+wget -O $instdir/azcopy_v10.tar.gz https://aka.ms/downloadazcopy-v10-linux,
+tar -xvzf $instdir/azcopy_v10.tar.gz -C $instdir/ --strip-components=1,
+$instdir/azcopy login --login-type=MSI,
+$instdir/azcopy copy 'https://<storage name>.blob.core.windows.net/<blob container name>/X5_Alrt_Lin.key' $instdir,
+$instdir/azcopy copy 'https://<storage name>.blob.core.windows.net/<blob container name>/X5_Base_Lin.key' $instdir,
+$instdir/azcopy copy 'https://<storage name>.blob.core.windows.net/<blob container name>/X5_Repl_Lin.key' $instdir,
+curl -A '' -o $instdir/ecx5.zip  https://www.nec.com/en/global/prod/expresscluster/en/trial/zip/ecx52l_amd64.zip,
+python3 -m zipfile -e $instdir/ecx5.zip $instdir,
+name=$(find $instdir/ -name "*.deb" ),
+sudo dpkg -i $name,
+sudo clplcnsc -i $instdir/*.key,
+rm -rfv $instdir/
+```
