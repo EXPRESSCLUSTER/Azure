@@ -102,9 +102,9 @@ copy-item C:\\$path_temp\\azcopy_windows_amd64_*\\azcopy.exe\\ -Destination c:\\
 cd c:\\$path_temp
 .\azcopy login --login-type=MSI
 .\azcopy copy 'https://<storage name>.blob.core.windows.net/<blob container name>/X5x_ALRT.key' C:\\$path_temp\\X5x_ALRT.key
-.\azcopy copy 'https:// <storage name>.blob.core.windows.net/<blob container name>/X5x_Base.key' C:\\$path_temp\\X5x_Base.key
-.\azcopy copy 'https:// <storage name>.blob.core.windows.net/<blob container name>/X5x_REPL.key' C:\\$path_temp\\X5x_REPL.key
-.\azcopy copy 'https:// <storage name>.blob.core.windows.net/<blob container name>/install-ecx.ps1' C:\\$path_temp\\install-ecx.ps1
+.\azcopy copy 'https://<storage name>.blob.core.windows.net/<blob container name>/X5x_Base.key' C:\\$path_temp\\X5x_Base.key
+.\azcopy copy 'https://<storage name>.blob.core.windows.net/<blob container name>/X5x_REPL.key' C:\\$path_temp\\X5x_REPL.key
+.\azcopy copy 'https://<storage name>.blob.core.windows.net/<blob container name>/install-ecx.ps1' C:\\$path_temp\\install-ecx.ps1
 powershell -executionpolicy bypass -File .\install-ecx.ps1 $ecxzip c:\$path_temp
 cd c:\\
 #Remove temporary folder - do not include this next line if troubleshooting
