@@ -72,7 +72,7 @@ Microsoft has more information about [DNS zones](https://docs.microsoft.com/en-u
 ```
 4. Run the script from an elevated PowerShell window to install and configure RRAS.   
 Notes: The original script can be downloaded from https://github.com/Azure/Azure-vpn-config-samples/blob/master/Microsoft/microsoft-rras-windows-server-2012-r2.ps1.xslt.
-I followed the instructions from the article [Site to Site VPN with RRAS](https://qiita.com/mino_s2000/items/9a714e9e79101ca38f13) to convert the script from XSLT to PowerShell, and make the variables more easy to modify. The RRAS script was originally created for Windows Server 2012 R2, but it worked on a Windows 2019 Server. This page is in Japanese but you can follow the changes that need to be made.   
+I followed the instructions from the article [Site to Site VPN with RRAS](https://qiita.com/mino_s2000/items/9a714e9e79101ca38f13) to convert the script from XSLT to PowerShell, and make the variables more easy to modify. The RRAS script was originally created for Windows Server 2012 R2, but it worked on a Windows 2019 and 2022 Servers. This page is in Japanese but you can follow the changes that need to be made.   
    
 With RRAS installed and configured, the VPN should now make a connection between the Azure site and on-premises site. Verify the connectivity status from Azure by accessing the **Local network gateway** resource and view **Connections**. The **Routing and Remote Access** console will show connection status from **Network Interfaces** on the on-premises server. You may need to create traffic (like pinging an Azure IP address) to activate the demand-dial interface. You can try pinging the Azure public IP address or use the PowerShell command:   
 ```
@@ -150,7 +150,7 @@ The default TTL value of the Azure DNS record is 3600 seconds. You need to chang
 
 ### Templates
 #### Site-to-Site VPN
-GitHub user _cvs79_ has created an [Azure ARM template](https://github.com/Azure/azure-quickstart-templates/tree/master/101-site-to-site-vpn-create) in the Azure Quick Start templates repository which performs everything needed to set up a Site-to-Site VPN connection. This includes a Virtual network, a VPN (Virtual network) gateway, a Local network gateway, and a VPN connection. I have slightly modified some strings in the template and have the files available [here](S2S_Template) (use *azuredeploy.json*). If you deploy the template from the Azure portal, the parameter strings can be easily changed to suit your needs. Here are the steps to do that:   
+GitHub user _cvs79_ has created an [Azure ARM template](https://github.com/Azure/azure-quickstart-templates/tree/master/101-site-to-site-vpn-create) in the Azure Quick Start templates repository which performs everything needed to set up a Site-to-Site VPN connection BUT _**_it seems to no longer be available_**_. This template included a Virtual network, a VPN (Virtual network) gateway, a Local network gateway, and a VPN connection. I have slightly modified some strings in the template and have these files available [here](S2S_Template) (use *azuredeploy.json*). If you deploy the template from the Azure portal, the parameter strings can be easily changed to suit your needs. Here are the steps to do that:   
 1. From the Azure Portal Search for **Template** and choose **Template deployment (deploy using custom templates)**.
 2. At the **Custom deployment (Deploy from a custom template)** page, select **Build your own template in the editor**.
 3. Choose **Load file**, locate your template on you computer, and click **Open**.
