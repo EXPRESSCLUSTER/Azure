@@ -1,5 +1,5 @@
 # Hybrid cluster (On-premises and Azure)
-This guide provides instructions on how to create a Site-to-Site VPN tunnel between an Azure site and on-premises site. Instead of using a VPN device on the on-premises site, RRAS is configured on a server to provide VPN access. A Hybrid Azure/On-premises cluster can then be created with EXPRESSCLUSTER software. Testing was done on Windows 2019 Datacenter Servers.    
+This guide provides instructions on how to create a Site-to-Site VPN tunnel between an Azure site and on-premises site. Instead of using a VPN device on the on-premises site, RRAS is configured on a server to provide VPN access. A Hybrid Azure/On-premises cluster can then be created with EXPRESSCLUSTER software. Testing was done on Windows 2019 and 2022 Datacenter Servers.    
 
 <p align="center">
 <img src="S2S diagram.png")
@@ -45,9 +45,10 @@ There are several values which you will need to prepare ahead of time. It is rec
 Sign into the Azure portal and create the following resources:
 1. Virtual network
 2. VPN (Virtual network) gateway   
-   \*Copy the public IP address for future reference
-3. Local network gateway
-4. VPN connection   
+   \*Copy the public IP address for future reference    
+   It is recommended to look at [VPN Gateway Pricing](https://azure.microsoft.com/en-us/pricing/details/vpn-gateway/) and [Gateway SKUs](https://learn.microsoft.com/en-us/azure/vpn-gateway/about-gateway-skus) before configuring a VPN Gateway so you can choose the appropriate one for your environment and budget.
+4. Local network gateway
+5. VPN connection   
 *Note that this is your Site-to-Site VPN connection between your Azure virtual network gateway and your on-premises site. It will not connect yet since RRAS is not set up on the on-premises site.*   
 Microsoft has a tutorial called [Tutorial: Create a Site-to-Site connection](https://docs.microsoft.com/en-us/azure/vpn-gateway/tutorial-site-to-site-portal) in the Azure portal which walks you through each of these steps and provides detailed information about each field. This document provides a link for you if you prefer PowerShell. You can skip the section titled ***Configure your VPN device*** since we will be using RRAS and not a VPN device. That section refers to downloading a configuration script for a VPN device. An RRAS script could be downloaded in the past, but it is no longer available. I found a copy of the original RRAS PowerShell script and will link to it later in this guide. If you would rather deploy a template to complete the four steps above, jump to [Templates](#Templates).
 ## Create a DNS zone
