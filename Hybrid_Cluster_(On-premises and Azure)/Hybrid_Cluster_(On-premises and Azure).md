@@ -103,7 +103,7 @@ Additional notes:
 - See [Notes on Azure DNS Resources](https://docs.nec.co.jp/software/clustering/expresscluster_x/x53/ecx_x53_windows_en/W53_RG_EN/W_RG_03.html#understanding-azure-dns-resources) for more information about this resource.
 
 ## Install EXPRESSCLUSTER
-Install EXPRESSCLUSTER on the Azure VM using the instructions from [section 4.2.1](https://www.nec.com/en/global/prod/expresscluster/en/support/Windows/W42_IG_EN_02.pdf#page=45) in the **Installation and Configuration Guide**. If more information on registering a license is needed, click [here](https://www.nec.com/en/global/prod/expresscluster/en/support/Windows/W42_IG_EN_02.pdf#page=51). Repeat on the on-premises node.
+Install EXPRESSCLUSTER on the Azure VM using the instructions from [section 4.2.1](https://www.nec.com/en/global/prod/expresscluster/en/doc/manuals/W53_IG_EN_02.pdf#page=62) in the **Installation and Configuration Guide**. If more information on registering a license is needed, click [here](https://www.nec.com/en/global/prod/expresscluster/en/support/Windows/W42_IG_EN_02.pdf#page=51). Repeat on the on-premises node.
 
 ## Create a cluster
 Create the cluster, including the Azure DNS resource, by following the instructions in [section 4.3](https://www.nec.com/en/global/prod/expresscluster/en/support/setup/HOWTO_AZURE_X42_Windows_EN_02.pdf#page=53) of the Azure configuration guide. Perform the installation steps on the Azure side node and proceed up to the **Custom monitor resource** section. We will not be adding monitor resources. Skip down to **page 67 (of the PDF file), step 5** to complete the configuration. Follow the instructions in following section (4.4) to verify whether the environment is working. See the note about testing by deleting the A record.
