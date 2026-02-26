@@ -62,7 +62,7 @@ This resource will be needed later for the Azure DNS resource in EXPRESSCLUSTER.
 Microsoft has more information about [DNS zones](https://docs.microsoft.com/en-us/azure/dns/dns-getstarted-portal). Jump to the [Templates](#Templates) section if you would like to deploy the DNS zone using a template.
 
 ## Configure the On-premises site
-1. Install a VM to the on-premises site (for the on-premises side cluster node) on the same network referenced by the Azure local network gateway. It will need a second disk for mirroring data. Create the necessary Cluster and Data partitions on the second disk. Click [here](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/504/W42_RG_EN/W_RG_03.html#understanding-mirror-disk-resources) for more information on setting up mirror disks. Scroll down to the **Data partition** and **Cluster partition** sections.
+1. Install a VM to the on-premises site (for the on-premises side cluster node) on the same network referenced by the Azure local network gateway. It will need a second disk for mirroring data. Create the necessary Cluster and Data partitions on the second disk. Click [here](https://docs.nec.co.jp/software/clustering/expresscluster_x/x53/ecx_x53_windows_en/W53_RG_EN/W_RG_03.html#understanding-mirror-disk-resources) for more information on setting up mirror disks. Scroll down to the **Data partition** and **Cluster partition** sections.
 2. Download the RRAS installation script [On-premise RRAS Setup.ps1](https://github.com/EXPRESSCLUSTER/Azure/blob/master/Hybrid_Cluster_(On-premises%20and%20Azure)/On-premise%20RRAS%20Setup.ps1) and copy it to your on-premises server.
 3. Change the following variables in the script to the values for your Azure environment:
 ```
