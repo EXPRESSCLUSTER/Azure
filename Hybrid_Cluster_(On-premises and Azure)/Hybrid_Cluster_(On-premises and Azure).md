@@ -120,7 +120,7 @@ In order to provide NP resolution, a witness server VM needs to be prepared on A
 Since the witness heartbeat resource uses the EXPRESSCLUSTER HTTP network partition resolution resource as well, an inbound port rule to allow port 80 needs to be created on the witness server’s NIC and through the VM’s local firewall.
 
 ### Witness heartbeat resource configuration in EXPRESSCLUSTER
-An explanation of the witness heartbeat resource can be found in the Resource Guide [here](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/504/W42_RG_EN/W_RG_05.html#understanding-witness-heartbeat-resources). 
+An explanation of the witness heartbeat resource can be found in the Resource Guide [here](https://docs.nec.co.jp/software/clustering/expresscluster_x/x53/ecx_x53_windows_en/W53_RG_EN/W_RG_05.html#understanding-witness-heartbeat-resources). 
 1. Open the **Cluster WebUI**.
 2. Change to **Config mode**.
 3. Click on the **Cluster** properties gear icon.
