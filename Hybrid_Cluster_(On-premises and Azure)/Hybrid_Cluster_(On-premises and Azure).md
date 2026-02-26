@@ -100,7 +100,7 @@ Additional notes:
 - You need to make note of the certificate’s output since the certificate is encrypted and contents are unreadable. Write down the “name” (URI) and tenant ID.
 - You only need to create a certificate on one node and then copy the certificate to the other node. Place the certificate in the same location on each node.
 - Also make note of the path Azure CLI was installed to.
-- See [Notes on Azure DNS Resources](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/504/W42_RG_EN/W_RG_03.html#understanding-azure-dns-resources) for more information about this resource.
+- See [Notes on Azure DNS Resources](https://docs.nec.co.jp/software/clustering/expresscluster_x/x53/ecx_x53_windows_en/W53_RG_EN/W_RG_03.html#understanding-azure-dns-resources) for more information about this resource.
 
 ## Install EXPRESSCLUSTER
 Install EXPRESSCLUSTER on the Azure VM using the instructions from [section 4.2.1](https://www.nec.com/en/global/prod/expresscluster/en/support/Windows/W42_IG_EN_02.pdf#page=45) in the **Installation and Configuration Guide**. If more information on registering a license is needed, click [here](https://www.nec.com/en/global/prod/expresscluster/en/support/Windows/W42_IG_EN_02.pdf#page=51). Repeat on the on-premises node.
