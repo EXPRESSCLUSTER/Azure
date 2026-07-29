@@ -6,7 +6,7 @@
       "type": "string",
       "defaultValue": "ecxcluster.zone",
       "metadata": {
-        "description": "The name of the DNS zone to be created.  Must have at least 2 segements, e.g. hostname.org"
+        "description": "The name of the DNS zone to be created.  Must have at least 2 segments, e.g. hostname.org"
       }
     }
   },
