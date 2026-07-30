@@ -2,7 +2,7 @@
 ## [Automatic Update of Azure Marketplace Images](Automatic_update_of_images.md)
 ## [Azure Image Builder\Image Templates](Image_Builder/Image_Builder.md)
 ## [Azure Migration](Azure_Migration/Azure%20Migration.md)
-## [Azure Routing Network](Azure_Rooting_Network.md)
+## [Azure Routing Network](Azure_Routing_Network.md)
 ## [Azure Shared Disk](Shared_Disk/Shared%20Disk.md)
 ## [Azure Update Management](Update_Management/Update_Management.md)
 ## [Create VM image for Azure Compute Gallery](Share_VM_on_Compute_Gallery/README.md)
