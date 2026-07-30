@@ -21,7 +21,7 @@ If ($path_temp -eq ""){
 }
 $path_install = "$path_temp\install"
 $path_bin = "C:\Program Files\EXPRESSCLUSTER\bin"
-$ECX_URL = "https://www.nec.com/en/global/prod/expresscluster/en/trial/zip/$ECX_zip"
+$ECX_URL = "https://www.nec.com/en/global/prod/expresscluster/en/zip/$ECX_zip"
 #Windows 2016 fails with TLS error on Invoke-WebRequest, so need local file
 #$ECX_URL = "C:\$ECX_zip"
 $logfile = "Install_Log.txt"
