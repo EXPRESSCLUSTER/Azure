@@ -1,7 +1,3 @@
-<h1 align="center">
-🚧🚧Under  Construction🚧🚧
-</h1>
-
 # Azure VM Image Builder\Image Templates
 Azure Image templates create a pipeline that fully automates the building of a custom VM image with ExpressCluster installed. The image can be distributed directly to an Azure Compute Gallery, ready for publishing to the Azure Marketplace. You can use ARM JSON templates for a command line experience (Azure VM Image Builder) or use the Azure Portal option (Image templates) for a GUI experience.
 This guide is based off of a Microsoft article titled “[Use custom image templates to create custom images in Azure Virtual Desktop](https://learn.microsoft.com/en-us/azure/virtual-desktop/create-custom-image-templates)”.    
@@ -59,7 +55,7 @@ az provider register -n Microsoft.ManagedIdentity
 &emsp;&ensp;**Select**: _Write: Create or Update Gallery Image Version_    
 &emsp;&ensp;Click **Add**    
 &emsp;&ensp;Click **Add permissions**    
-&emsp;&ensp;**Search**: _Compute images, click Microsoft Compute (Microsoft.compute/images)_    
+&emsp;&ensp;**Search**: _Compute images_, click **Microsoft Compute** (`Microsoft.Compute/images`)    
 &emsp;&ensp;**Select**: _Read: Get Image, Write: Create or Update Image, Delete: Delete Image_    
 &emsp;&ensp;Click **Add**    
 &emsp;&ensp;Click **Next**    
@@ -93,6 +89,7 @@ It may be necessary to copy private files, which are needed for software install
 **Customizer**: _Run a powershell command_    
 **Inline command**:
 ```powershell
+#Windows script
 $path_temp = 'temp-ecx'
 $ecxzip = 'ecx52w_x64.zip'
 New-Item -Type Directory -Path  'c:\\' -Name $path_temp
@@ -176,12 +173,12 @@ $instdir/azcopy login --login-type=MSI
 $instdir/azcopy copy 'https://<storage name>.blob.core.windows.net/<blob container name>/X5_Alrt_Lin.key' $instdir
 $instdir/azcopy copy 'https://<storage name>.blob.core.windows.net/<blob container name>/X5_Base_Lin.key' $instdir
 $instdir/azcopy copy 'https://<storage name>.blob.core.windows.net/<blob container name>/X5_Repl_Lin.key' $instdir
-curl -A '' -o $instdir/ecx5.zip  https://www.nec.com/en/global/prod/expresscluster/en/trial/zip/ecx52l_x64.zip
+curl -A '' -o $instdir/ecx5.zip  https://www.nec.com/en/global/prod/expresscluster/en/zip/ecx52l_x64.zip
 unzip $instdir/ecx5.zip -d $instdir
 name=$(find $instdir/ -name "*.rpm" )
 sudo rpm -i $name
 sudo clplcnsc -i $instdir/*.key
-# Check fireall
+# Check firewall
 # Open ports through firewall
 sudo clpfwctrl.sh --add
 # Disable SELinux
@@ -222,18 +219,52 @@ sudo firewall-cmd --info-service=clusterpro | grep 'ports'
 ```
 #### Ubuntu script
 ```bash
-instdir=/tmp/ecxinstall,
-mkdir $instdir,
-wget -O $instdir/azcopy_v10.tar.gz https://aka.ms/downloadazcopy-v10-linux,
-tar -xvzf $instdir/azcopy_v10.tar.gz -C $instdir/ --strip-components=1,
-$instdir/azcopy login --login-type=MSI,
-$instdir/azcopy copy 'https://<storage name>.blob.core.windows.net/<blob container name>/X5_Alrt_Lin.key' $instdir,
-$instdir/azcopy copy 'https://<storage name>.blob.core.windows.net/<blob container name>/X5_Base_Lin.key' $instdir,
-$instdir/azcopy copy 'https://<storage name>.blob.core.windows.net/<blob container name>/X5_Repl_Lin.key' $instdir,
-curl -A '' -o $instdir/ecx5.zip  https://www.nec.com/en/global/prod/expresscluster/en/trial/zip/ecx52l_amd64.zip,
-python3 -m zipfile -e $instdir/ecx5.zip $instdir,
-name=$(find $instdir/ -name "*.deb" ),
-sudo dpkg -i $name,
-sudo clplcnsc -i $instdir/*.key,
+instdir=/tmp/ecxinstall
+mkdir $instdir
+wget -O $instdir/azcopy_v10.tar.gz https://aka.ms/downloadazcopy-v10-linux
+tar -xvzf $instdir/azcopy_v10.tar.gz -C $instdir/ --strip-components=1
+$instdir/azcopy login --login-type=MSI
+$instdir/azcopy copy 'https://<storage name>.blob.core.windows.net/<blob container name>/X5_Alrt_Lin.key' $instdir
+$instdir/azcopy copy 'https://<storage name>.blob.core.windows.net/<blob container name>/X5_Base_Lin.key' $instdir
+$instdir/azcopy copy 'https://<storage name>.blob.core.windows.net/<blob container name>/X5_Repl_Lin.key' $instdir
+curl -A '' -o $instdir/ecx5.zip  https://www.nec.com/en/global/prod/expresscluster/en/zip/ecx52l_amd64.zip
+python3 -m zipfile -e $instdir/ecx5.zip $instdir
+name=$(find $instdir/ -name "*.deb" )
+sudo dpkg -i $name
+sudo clplcnsc -i $instdir/*.key
 rm -rfv $instdir/
 ```
+ufw firewall is installed but not active. The following code will install ufw, if missing, open ports, and activate it.    
+*if using with the above script, place before the last line (which removes the installation directory).
+```bash
+FW=ufw
+which $FW > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+  echo "'$FW' is not installed"
+  #exit ${FWCTRL_ERR_CMDNOTFOUND}
+  echo "Installing ufw"
+  sudo apt install ufw
+  sudo ufw enable
+  sudo ufw status
+  echo "Open ports"
+else
+  echo "'$FW' is installed."
+  echo "Open ports"
+fi
+#Open ports
+sudo ufw allow 29001:29004/tcp
+sudo ufw allow 29008:29010/tcp
+sudo ufw allow 29002:29003/udp
+sudo ufw allow 29006/udp
+sudo ufw allow OpenSSH
+# Ensure the systemd service starts on boot and runs now
+sudo systemctl enable --now ufw
+# Force the firewall rules to become active non-interactively
+sudo ufw --force enable
+# Check ufw status
+sudo ufw status verbose
+```
+
+**NOTE**    
+- The scripts above are set to download `EXPRESSCLUSTER v5.2`: *ecx52w_x64.zip* (for Windows), *ecx52l_x64.zip* (for Red Hat), and *ecx52l_amd64.zip* (for Ubuntu). Change the number '52' to the version you would like to download and install. e.g. v6.0 is '60'    
+- The path to the installation binaries on the www.nec.com website has changed once before. If the files do not download, be sure to verify that the path is still correct.
