@@ -264,6 +264,17 @@ sudo ufw --force enable
 # Check ufw status
 sudo ufw status verbose
 ```
+Validate installation and configuration if desired.
+```bash
+echo "ExpressCluster licenses"
+sudo clplcnsc -l | grep -i 'cluster'
+uname -a
+hostnamectl
+echo "Firewall state and open ports"
+sudo ufw status verbose
+echo "ECX Services"
+systemctl --type=service | grep -i cluster
+```
 
 **NOTE**    
 - The scripts above are set to download `EXPRESSCLUSTER v5.2`: *ecx52w_x64.zip* (for Windows), *ecx52l_x64.zip* (for Red Hat), and *ecx52l_amd64.zip* (for Ubuntu). Change the number '52' to the version you would like to download and install. e.g. v6.0 is '60'    
