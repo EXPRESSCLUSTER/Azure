@@ -17,6 +17,6 @@ ECX is confirmed to run on Azure Linux (CBL Mariner) with some caveats.
 - `clpfwctrl.sh` could not be used. Custom settings of firewall (`iptables`) are required for heartbeat and other communications.
   - `systemctl disable iptables` was used on the validation.
 
-## TBD
+## Known open question
 
-- Check if DRBD is usable for disk replication.
+- Whether DRBD is usable for disk replication on this platform has not yet been validated.
