@@ -36,6 +36,8 @@ Migrating an EXPRESSCLUSTER on-premise Windows VM cluster to Azure cloud require
 
 6.	Remove **FIP** or **VIP** resources using the **Cluster WebUI**.
 
+       > **Note:** `FIP` and `VIP` resources do not work in Azure, as Azure does not have an equivalent floating IP resource.
+
        Launch the **EXPRESSCLUSTER WebUI**. Change to **Config Mode** and remove the resource.
 
 7.	Shut down the On-premise VMs \[[ECX Shutdown.bat](Scripts/04%20ECX%20Shutdown.bat)\]
@@ -102,15 +104,27 @@ This guide will show  you how to:
 
 1.	Start the **Cluster WebUI** to view the cluster status. Change to the **Status** tab.
 
-2.	Start the Cluster (if it hasn't started yet).
+2.	Start the Cluster (if it hasn't started yet).    
 
-3.	Create a Public or Internal Load Balancer in Azure.    
-       [Public Load Balancer - ECX Azure Howto Guide](https://docs.nec.co.jp/software/clustering/expresscluster_x/x60/ecx_x60_windows_en/HOWTO_AZURE_X60_Windows_EN/HOWTO_Azure_Windows.html#cluster-creation-procedure-for-an-ha-cluster-using-a-public-load-balancer)    
-       [Public Load Balancer - Microsoft Learn](https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-public-portal)    
-       [Internal Load Balancer - ECX Azure Howto Guide](https://docs.nec.co.jp/software/clustering/expresscluster_x/x60/ecx_x60_windows_en/HOWTO_AZURE_X60_Windows_EN/HOWTO_Azure_Windows.html#cluster-creation-procedure-for-an-ha-cluster-using-an-internal-load-balancer)    
-       [Internal Load Balancer - Microsoft Learn](https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-internal-portal)
+       > **Note:** At this point the VMs should be working, but additional steps are necessary to restore HA clustering functionality.
 
-4.	Add the **Azure probe port resource**, the Azure version of the VIP resource, to the failover group. You will need the Probeport number which was created with the Azure Load Balancer.
+## Add an Azure Load Balancer with a Probe Port (with Azure probe port resource in ECX) OR Azure Zone (with Azure DNS resource in ECX) 
+
+> **Note:** One of these resources is necessary to take the place of the removed FIP resource to enable an HA cluster in Azure with EXPRESSCLUSTER.    
+
+### Create a Public or Internal Load Balancer in Azure.
+1. Follow the instructions in the following guides to create a load balancer in Azure    
+[Public Load Balancer - ECX Azure Howto Guide](https://docs.nec.co.jp/software/clustering/expresscluster_x/x60/ecx_x60_windows_en/HOWTO_AZURE_X60_Windows_EN/HOWTO_Azure_Windows.html#cluster-creation-procedure-for-an-ha-cluster-using-a-public-load-balancer)    
+[Public Load Balancer - Microsoft Learn](https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-public-portal)    
+[Internal Load Balancer - ECX Azure Howto Guide](https://docs.nec.co.jp/software/clustering/expresscluster_x/x60/ecx_x60_windows_en/HOWTO_AZURE_X60_Windows_EN/HOWTO_Azure_Windows.html#cluster-creation-procedure-for-an-ha-cluster-using-an-internal-load-balancer)    
+[Internal Load Balancer - Microsoft Learn](https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-internal-portal)    
+2. Add the **Azure probe port resource**, the Azure version of the VIP resource, to the failover group in EXPRESSCLUSTER. You will need the Probeport number which was created with the Azure Load Balancer. Use defaults for all other settings.
+
+### Create a DNS Zone in Azure.
+1. [Create a DNS Zone](https://learn.microsoft.com/en-us/azure/dns/dns-getstarted-portal)         
+2. Open the [Cluster Creation Procedure (for an HA Cluster Using Azure DNS)](https://docs.nec.co.jp/software/clustering/expresscluster_x/x60/ecx_x60_windows_en/HOWTO_AZURE_X60_Windows_EN/HOWTO_Azure_Windows.html#cluster-creation-procedure-for-an-ha-cluster-using-azure-dns) guide, and scroll down to section `4.3, step 3` to create a **service principal** in Azure.
+3. Scroll down to section `4.4, step 2, section 'Azure DNS resource'` and follow the directions to add an **Azure DNS resource** to the failover group in EXPRESSCLUSTER.
+
 
 ## References
 [Azure Migrate documentation](https://learn.microsoft.com/en-us/azure/migrate/?view=migrate)
