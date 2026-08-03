@@ -2,7 +2,7 @@
 This guide provides instructions on how to create a Site-to-Site VPN tunnel between an Azure site and on-premises site. Instead of using a VPN device on the on-premises site, RRAS is configured on a server to provide VPN access. A Hybrid Azure/On-premises cluster can then be created with EXPRESSCLUSTER software. Testing was done on Windows 2019 and 2022 Datacenter Servers.    
 
 <p align="center">
-<img src="S2S diagram.png")
+<img src="S2S diagram.png" alt="Site-to-Site VPN diagram">
 </p>   
       
 ## Prerequisites
@@ -21,10 +21,12 @@ This guide provides instructions on how to create a Site-to-Site VPN tunnel betw
 4. Azure VPN connection
 5. Azure DNS Zone
 6. RRAS installed on the On-premises Windows Server
-7. Install EXPRESSCLUSTER on both nodes
-8. Create and configure a cluster
-9. Set up a Witness server
-10. Client notes
+7. Create the Azure VM node
+8. Prepare the Azure DNS resource (service principal / certificate)
+9. Install EXPRESSCLUSTER on both nodes
+10. Create and configure a cluster
+11. Set up a Witness server
+12. Client notes
 
 ## Notable resources
 There are several values which you will need to prepare ahead of time. It is recommended to make special note of the following key values which are used multiple times:    
@@ -45,12 +47,12 @@ There are several values which you will need to prepare ahead of time. It is rec
 Sign into the Azure portal and create the following resources:
 1. Virtual network
 2. VPN (Virtual network) gateway   
-   \*Copy the public IP address for future reference    
-   It is recommended to look at [VPN Gateway Pricing](https://azure.microsoft.com/en-us/pricing/details/vpn-gateway/) and [Gateway SKUs](https://learn.microsoft.com/en-us/azure/vpn-gateway/about-gateway-skus) before configuring a VPN Gateway so you can choose the appropriate one for your environment and budget. From the portal you can upgrade your SKU, but you cannot downgrade it, so choose wisely. If you do want to downgrade your SKU, you will need to first remove the Connection, delete the VPN Gateway, and then recreate it. You can reuse the Public IP address, so if you use the same names and configuration, you will not have to modify anything else to get it running again. Once done creating the VPN Gateway, create a new Connection. Another thing to be aware of is that there is no OFF or ON setting for the VPN Gateway, so it is constantly running. If you are in a testing phase and are concerned about cost, you can remove the VPN Gateway during long periods where it will not be used, and then recreate it when ready to continue.
-4. Local network gateway
-5. VPN connection   
-*Note that this is your Site-to-Site VPN connection between your Azure virtual network gateway and your on-premises site. It will not connect yet since RRAS is not set up on the on-premises site.*   
-Microsoft has a tutorial called [Tutorial: Create a Site-to-Site connection](https://docs.microsoft.com/en-us/azure/vpn-gateway/tutorial-site-to-site-portal) in the Azure portal which walks you through each of these steps and provides detailed information about each field. This document provides a link for you if you prefer PowerShell. You can skip the section titled ***Configure your VPN device*** since we will be using RRAS and not a VPN device. That section refers to downloading a configuration script for a VPN device. An RRAS script could be downloaded in the past, but it is no longer available. I found a copy of the original RRAS PowerShell script and will link to it later in this guide. If you would rather deploy a template to complete the four steps above, jump to [Templates](#Templates).
+   >Copy the public IP address for future reference    
+   >**Note** It is recommended to look at [VPN Gateway Pricing](https://azure.microsoft.com/en-us/pricing/details/vpn-gateway/) and [Gateway SKUs](https://learn.microsoft.com/en-us/azure/vpn-gateway/about-gateway-skus) before configuring a VPN Gateway so you can choose the appropriate one for your environment and budget. From the portal you can upgrade your SKU, but you cannot downgrade it, so choose wisely. If you do want to downgrade your SKU, you will need to first remove the Connection, delete the VPN Gateway, and then recreate it. You can reuse the Public IP address, so if you use the same names and configuration, you will not have to modify anything else to get it running again. Once done creating the VPN Gateway, create a new Connection. Another thing to be aware of is that there is no OFF or ON setting for the VPN Gateway, so it is constantly running. If you are in a testing phase and are concerned about cost, you can remove the VPN Gateway during long periods where it will not be used, and then recreate it when ready to continue.
+3. Local network gateway
+4. VPN connection   
+   >*Note that this is your Site-to-Site VPN connection between your Azure virtual network gateway and your on-premises site. It will not connect yet since RRAS is not set up on the on-premises site.*   
+Microsoft has a tutorial called [Tutorial: Create a Site-to-Site connection](https://docs.microsoft.com/en-us/azure/vpn-gateway/tutorial-site-to-site-portal) in the Azure portal which walks you through each of these steps and provides detailed information about each field. This document provides a link for you if you prefer PowerShell. You can skip the section titled ***Configure your VPN device*** since we will be using RRAS and not a VPN device. That section refers to downloading a configuration script for a VPN device. An RRAS script could be downloaded in the past, but it is no longer available. I found a copy of the original RRAS PowerShell script and will link to it later in this guide. If you would rather deploy a template to complete the four steps above, jump to [Templates](#templates).
 ## Create a DNS zone
 This resource will be needed later for the Azure DNS resource in EXPRESSCLUSTER.
 1. Return to the Azure portal dashboard and search for and select **DNS zones**.
@@ -59,10 +61,10 @@ This resource will be needed later for the Azure DNS resource in EXPRESSCLUSTER.
 4. Enter a **Name** for the zone (e.g. *cluster1.zone*).
 5. Click **Review + Create**. After passing validation, click **Create**.
 
-Microsoft has more information about [DNS zones](https://docs.microsoft.com/en-us/azure/dns/dns-getstarted-portal). Jump to the [Templates](#Templates) section if you would like to deploy the DNS zone using a template.
+Microsoft has more information about [DNS zones](https://docs.microsoft.com/en-us/azure/dns/dns-getstarted-portal). Jump to the [Templates](#templates) section if you would like to deploy the DNS zone using a template.
 
 ## Configure the On-premises site
-1. Install a VM to the on-premises site (for the on-premises side cluster node) on the same network referenced by the Azure local network gateway. It will need a second disk for mirroring data. Create the necessary Cluster and Data partitions on the second disk. Click [here](https://docs.nec.co.jp/software/clustering/expresscluster_x/x53/ecx_x53_windows_en/W53_RG_EN/W_RG_03.html#understanding-mirror-disk-resources) for more information on setting up mirror disks. Scroll down to the **Data partition** and **Cluster partition** sections.
+1. Install a VM to the on-premises site (for the on-premises side cluster node) on the same network referenced by the Azure local network gateway. It will need a second disk for mirroring data. Create the necessary Cluster and Data partitions on the second disk. Click [here](https://docs.nec.co.jp/software/clustering/expresscluster_x/x53/ecx_x53_windows_en/W53_RG_EN/W_RG_03.html#understanding-mirror-disk-resources) for more information on setting up mirror disks (scroll down to the **Data partition** and **Cluster partition** sections).
 2. Download the RRAS installation script [On-premise RRAS Setup.ps1](https://github.com/EXPRESSCLUSTER/Azure/blob/master/Hybrid_Cluster_(On-premises%20and%20Azure)/On-premise%20RRAS%20Setup.ps1) and copy it to your on-premises server.
 3. Change the following variables in the script to the values for your Azure environment:
 ```
@@ -71,8 +73,8 @@ Microsoft has more information about [DNS zones](https://docs.microsoft.com/en-u
        $SP_PresharedKey (Site to Site VPN connection Shared Key)
 ```
 4. Run the script from an elevated PowerShell window to install and configure RRAS.   
-Notes: The original script can be downloaded from https://github.com/Azure/Azure-vpn-config-samples/blob/master/Microsoft/microsoft-rras-windows-server-2012-r2.ps1.xslt.
-I followed the instructions from the article [Site to Site VPN with RRAS](https://qiita.com/mino_s2000/items/9a714e9e79101ca38f13) to convert the script from XSLT to PowerShell, and make the variables more easy to modify. The RRAS script was originally created for Windows Server 2012 R2, but it worked on a Windows 2019 and 2022 Servers. This page is in Japanese but you can follow the changes that need to be made.   
+   > **Note** The original script can be downloaded from https://github.com/Azure/Azure-vpn-config-samples/blob/master/Microsoft/microsoft-rras-windows-server-2012-r2.ps1.xslt.
+   > I followed the instructions from the article [Site to Site VPN with RRAS](https://qiita.com/mino_s2000/items/9a714e9e79101ca38f13) to convert the script from XSLT to PowerShell, and make the variables more easy to modify. The RRAS script was originally created for Windows Server 2012 R2, but it worked on a Windows 2019 and 2022 Servers. This page is in Japanese but you can follow the changes that need to be made.   
    
 With RRAS installed and configured, the VPN should now make a connection between the Azure site and on-premises site. Verify the connectivity status from Azure by accessing the **Local network gateway** resource and view **Connections**. The **Routing and Remote Access** console will show connection status from **Network Interfaces** on the on-premises server. You may need to create traffic (like pinging an Azure IP address) to activate the demand-dial interface. You can try pinging the Azure public IP address or use the PowerShell command:   
 ```
@@ -87,12 +89,12 @@ The connection can also be verified with *Get-VpnS2SInterface*.
 ## Create VM on Azure
 If you have not done so, install a VM in Azure (for the Azure side cluster node) on a subnet of the virtual network created beforehand. It will also need a second disk for mirroring data. Create the necessary **Cluster** and **Data** partitions on the second disk, identical to the one created on the on-premises server.   
    
-**Be sure that the Azure VM and the on-premises VM can ping each other before continuing.**
+**Be sure that the Azure VM and the on-premises VM can ping each other before continuing!**
 
 ## Preparation for Azure DNS resource
 1. Install the Azure CLI on each node
 2. Create a service principal using the Azure CLI   
-Note that the output for this step is a certificate which can be used by the Azure DNS resource to access the Azure zone to manage a DNS record.
+  > The output for this step is a certificate which can be used by the Azure DNS resource to access the Azure zone to manage a DNS record.
 
 See the [Instructions for performing these steps](https://www.nec.com/en/global/prod/expresscluster/en/doc/guide/HOWTO_AZURE_X53_Windows_EN_01.pdf#page=54) - scroll down to **step 8** and proceed from there. These instructions provide a link to download the Azure CLI.
 
@@ -147,9 +149,9 @@ You should now be able to access the DNS record created by EXPRESSCLUSTER from t
 ### TTL setting
 The default TTL value of the Azure DNS record set is 3600 seconds. You need to change it to a much lower value in order for DNS updates to occur quickly after a failover from one cluster node to the other. There is a TTL setting in the EXPRESSCLUSTER Azure DNS Resource Properties dialog box where this value can be preset. When a failover occurs, the DNS record set's IP address field will be updated with the active node's IP address, and the TTL will be pulled from the EXPRESSCLUSTER Azure DNS Resource's TTL property. A bug was discovered a number of years ago in the Azure CLI where the TTL value of the record set would be reset to 3600 seconds when the record set was modified after a failover occurred. A workaround was created to prevent a reset of your desired TTL. If you notice that this problem has resurfaced, follow the instructions from the Azure GitHUB page titled [Workaround for AzureCLI issue](https://github.com/EXPRESSCLUSTER/Azure/blob/master/Workaround-for-AzureCLI-issue.md), which describes steps to be performed on the Azure DNS resource in EXPRESSCLUSTER.
 
-### Templates
-#### Site-to-Site VPN
-GitHub user _cvs79_ has created an [Azure ARM template](https://github.com/Azure/azure-quickstart-templates/tree/master/101-site-to-site-vpn-create) in the Azure Quick Start templates repository which performs everything needed to set up a Site-to-Site VPN connection BUT _**_the link no longer works_**_. This template included a Virtual network, a VPN (Virtual network) gateway, a Local network gateway, and a VPN connection. I have slightly modified some strings in the template and have these files available [here](S2S_Template) (use *azuredeploy.json*). If you deploy the template from the Azure portal, the parameter strings can be easily changed to suit your needs. Here are the steps to do that:   
+## Templates
+### Site-to-Site VPN
+GitHub user _cvs79_ has created an [Azure ARM template](https://github.com/Azure/azure-quickstart-templates/tree/master/101-site-to-site-vpn-create) in the Azure Quick Start templates repository which performs everything needed to set up a Site-to-Site VPN connection, **but the link no longer works**. This template included a Virtual network, a VPN (Virtual network) gateway, a Local network gateway, and a VPN connection. I have slightly modified some strings in the template and have these files available [here](S2S_Template) (use *azuredeploy.json*). If you deploy the template from the Azure portal, the parameter strings can be easily changed to suit your needs. Here are the steps to do that:   
 1. From the Azure Portal Search for **Template** and choose **Template deployment (deploy using custom templates)**.
 2. At the **Custom deployment (Deploy from a custom template)** page, select **Build your own template in the editor**.
 3. Choose **Load file**, locate your template on you computer, and click **Open**.
@@ -159,5 +161,5 @@ GitHub user _cvs79_ has created an [Azure ARM template](https://github.com/Azure
 7. Click on **Review + create** to apply the template.   
 _Note that this template will take some time to deploy_. [View the template interface](S2S_Template/S2S%20Template%20Sample.png).
 
-#### DNS Zone
+### DNS Zone
 A template to deploy a DNS zone can be downloaded [here](DNS_zone_Template). The source for this template can be found on [Quickstart: Create an Azure DNS zone and record using an ARM template](https://docs.microsoft.com/en-us/azure/dns/dns-get-started-template). I just removed the code to create A records. Follow the deployment steps above.
